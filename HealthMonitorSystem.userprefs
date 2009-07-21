@@ -1,0 +1,27 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workbench ActiveDocument="Register.aspx" ctype="Workbench">
+    <Files>
+      <File FileName="Default.aspx" Line="50" Column="12" />
+      <File FileName="Default.aspx.cs" Line="68" Column="17" />
+      <File FileName="Register.aspx" Line="110" Column="35" />
+      <File FileName="Register.aspx.cs" Line="38" Column="27" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State expanded="True">
+          <Node name="HealthMonitorSystem" expanded="True">
+            <Node name="Default.aspx" expanded="True" />
+            <Node name="Register.aspx" expanded="True" selected="True" />
+          </Node>
+        </State>
+      </Pad>
+      <Pad Id="ClassPad">
+        <State expanded="True" selected="True" />
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" ctype="Workspace" />
+</Properties>

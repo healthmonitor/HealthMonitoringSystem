@@ -1,0 +1,104 @@
+<Configuration>
+  <SettingsComponent>
+    <string />
+    <integer>
+      <setting name="UsedSolutionBuilderID">0</setting>
+    </integer>
+    <boolean>
+      <setting name="SolutionAnalysisEnabled">False</setting>
+    </boolean>
+  </SettingsComponent>
+  <NAntValidationSettings>
+    <NAntPath value="" />
+  </NAntValidationSettings>
+  <CompletionStatisticsManager>
+    <ItemStatistics item="Default">
+      <Item value="Request" priority="0" />
+      <Item value="this" priority="0" />
+      <Item value="string" priority="2" />
+      <Item value="txtpassword" priority="0" />
+      <Item value="userName" priority="2" />
+      <Item value="password" priority="1" />
+      <Item value="catch" priority="0" />
+      <Item value="Exception" priority="0" />
+      <Item value="finally" priority="0" />
+      <Item value="null" priority="2" />
+      <Item value="dbcon" priority="1" />
+      <Item value="if" priority="1" />
+      <Item value="dbcmd" priority="2" />
+      <Item value="bool" priority="0" />
+      <Item value="else" priority="0" />
+      <Item value="false" priority="0" />
+      <Item value="Session" priority="0" />
+      <Item value="txtuser" priority="0" />
+      <Item value="isLoginValid" priority="0" />
+      <Item value="Response" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Web.HttpRequest">
+      <Item value="Form" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:HealthMonitorSystem._Default">
+      <Item value="txtuser" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Web.UI.WebControls.TextBox">
+      <Item value="ToString" priority="1" />
+      <Item value="Text" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.String">
+      <Item value="Format" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Data.IDbCommand">
+      <Item value="Dispose" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Web.HttpResponse">
+      <Item value="Write" priority="0" />
+    </ItemStatistics>
+  </CompletionStatisticsManager>
+  <RecentFiles>
+    <RecentFiles>
+      <File id="1540391E-C0BF-4909-BFB9-D1DC038381E8/d:__RESHARPER__DummyWebPages_/f:PatientEntry.aspx" caret="458" scrollPosition="0|0" />
+      <File id="1540391E-C0BF-4909-BFB9-D1DC038381E8/f:Register.aspx.cs" caret="0" scrollPosition="0|0" />
+      <File id="1540391E-C0BF-4909-BFB9-D1DC038381E8/f:Default.aspx.cs" caret="1645" scrollPosition="0|7" />
+      <File id="1540391E-C0BF-4909-BFB9-D1DC038381E8/d:__RESHARPER__DummyWebPages_/f:Default.aspx" caret="1929" scrollPosition="0|0" />
+      <File id="1540391E-C0BF-4909-BFB9-D1DC038381E8/d:__RESHARPER__DummyWebPages_/f:Register.aspx" caret="551" scrollPosition="0|0" />
+    </RecentFiles>
+    <RecentEdits>
+      <File id="1540391E-C0BF-4909-BFB9-D1DC038381E8/d:__RESHARPER__DummyWebPages_/f:PatientEntry.aspx" caret="421" scrollPosition="0|9" />
+      <File id="1540391E-C0BF-4909-BFB9-D1DC038381E8/d:__RESHARPER__DummyWebPages_/f:PatientEntry.aspx" caret="421" scrollPosition="0|24" />
+      <File id="1540391E-C0BF-4909-BFB9-D1DC038381E8/d:__RESHARPER__DummyWebPages_/f:PatientEntry.aspx" caret="421" scrollPosition="0|29" />
+      <File id="1540391E-C0BF-4909-BFB9-D1DC038381E8/f:Default.aspx.cs" caret="2416" scrollPosition="0|60" />
+      <File id="1540391E-C0BF-4909-BFB9-D1DC038381E8/f:Default.aspx.cs" caret="2416" scrollPosition="0|24" />
+      <File id="1540391E-C0BF-4909-BFB9-D1DC038381E8/f:Default.aspx.cs" caret="2416" scrollPosition="0|24" />
+      <File id="1540391E-C0BF-4909-BFB9-D1DC038381E8/f:Default.aspx.cs" caret="2416" scrollPosition="0|30" />
+      <File id="1540391E-C0BF-4909-BFB9-D1DC038381E8/f:Default.aspx.cs" caret="2274" scrollPosition="0|34" />
+      <File id="1540391E-C0BF-4909-BFB9-D1DC038381E8/f:Default.aspx.cs" caret="1263" scrollPosition="0|21" />
+      <File id="1540391E-C0BF-4909-BFB9-D1DC038381E8/f:Default.aspx.cs" caret="394" scrollPosition="0|21" />
+      <File id="1540391E-C0BF-4909-BFB9-D1DC038381E8/f:Default.aspx.cs" caret="938" scrollPosition="0|25" />
+      <File id="1540391E-C0BF-4909-BFB9-D1DC038381E8/f:Default.aspx.cs" caret="1999" scrollPosition="0|41" />
+      <File id="1540391E-C0BF-4909-BFB9-D1DC038381E8/f:Default.aspx.cs" caret="2384" scrollPosition="0|41" />
+      <File id="1540391E-C0BF-4909-BFB9-D1DC038381E8/f:Default.aspx.cs" caret="1314" scrollPosition="0|25" />
+      <File id="1540391E-C0BF-4909-BFB9-D1DC038381E8/f:Default.aspx.cs" caret="471" scrollPosition="0|25" />
+      <File id="1540391E-C0BF-4909-BFB9-D1DC038381E8/f:Default.aspx.cs" caret="1845" scrollPosition="0|25" />
+      <File id="1540391E-C0BF-4909-BFB9-D1DC038381E8/f:Default.aspx.cs" caret="35" scrollPosition="0|0" />
+      <File id="1540391E-C0BF-4909-BFB9-D1DC038381E8/d:__RESHARPER__DummyWebPages_/f:Default.aspx" caret="346" scrollPosition="0|1" />
+      <File id="1540391E-C0BF-4909-BFB9-D1DC038381E8/d:__RESHARPER__DummyWebPages_/f:Default.aspx" caret="128" scrollPosition="0|0" />
+      <File id="1540391E-C0BF-4909-BFB9-D1DC038381E8/d:__RESHARPER__DummyWebPages_/f:Register.aspx" caret="3003" scrollPosition="0|41" />
+      <File id="1540391E-C0BF-4909-BFB9-D1DC038381E8/d:__RESHARPER__DummyWebPages_/f:PatientEntry.aspx" caret="458" scrollPosition="0|0" />
+      <File id="1540391E-C0BF-4909-BFB9-D1DC038381E8/d:__RESHARPER__DummyWebPages_/f:Register.aspx" caret="337" scrollPosition="0|0" />
+      <File id="1540391E-C0BF-4909-BFB9-D1DC038381E8/d:__RESHARPER__DummyWebPages_/f:Default.aspx" caret="1138" scrollPosition="0|5" />
+      <File id="1540391E-C0BF-4909-BFB9-D1DC038381E8/d:__RESHARPER__DummyWebPages_/f:Default.aspx" caret="631" scrollPosition="0|5" />
+      <File id="1540391E-C0BF-4909-BFB9-D1DC038381E8/d:__RESHARPER__DummyWebPages_/f:Default.aspx" caret="1494" scrollPosition="0|17" />
+      <File id="1540391E-C0BF-4909-BFB9-D1DC038381E8/d:__RESHARPER__DummyWebPages_/f:Default.aspx" caret="1912" scrollPosition="0|17" />
+      <File id="1540391E-C0BF-4909-BFB9-D1DC038381E8/d:__RESHARPER__DummyWebPages_/f:Register.aspx" caret="2105" scrollPosition="10|41" />
+      <File id="1540391E-C0BF-4909-BFB9-D1DC038381E8/d:__RESHARPER__DummyWebPages_/f:Register.aspx" caret="2962" scrollPosition="0|58" />
+    </RecentEdits>
+  </RecentFiles>
+  <UnitTestRunner>
+    <CustomStartDirectory>
+    </CustomStartDirectory>
+    <UseShadowCopy>True</UseShadowCopy>
+    <UseCustomFolder>False</UseCustomFolder>
+    <EnableUnitTesting>True</EnableUnitTesting>
+    <Providers />
+  </UnitTestRunner>
+</Configuration>
