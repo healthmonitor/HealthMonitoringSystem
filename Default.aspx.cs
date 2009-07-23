@@ -4,74 +4,67 @@ using Npgsql;
 
 namespace HealthMonitorSystem
 {
-    public partial class _Default : System.Web.UI.Page
+    public partial class _Default : BasePage
     {
-        protected void Page_Load(object sender, EventArgs e)
-        {
+		
+		protected override void OnPreRender (System.EventArgs e)
+		{
+			base.OnPreRender (e);
+			if(!string.IsNullOrEmpty(this.ErrorMessage))
+			{
+				lblError.Text = this.ErrorMessage;
+				this.ClearErrorMessages();
+			}
+		}
 
-        }
-
+		
         protected void btnlogin_Click(object sender, EventArgs e)
         {
-            IDataReader reader = null;
-            IDbConnection dbcon = null;
-            IDbCommand dbcmd = null;
-              try
-              {
-
-		          	string connectionString = "Server=db.cecs.pdx.edu;" + "Port=5432;" + "Database=jammulan;" + "User ID=jammulan;" + "Password=kr!m22Uc;";
-		            dbcon = new Npgsql.NpgsqlConnection(connectionString);
-		            dbcon.Open();
-		            dbcmd = dbcon.CreateCommand();
-		            string userName = txtuser.Text;
-		            string password = txtpassword.Text;
-		            string sql = string.Format("select * from login where username = '{0}' and password ='{1}'",userName,password);
-		            dbcmd.CommandText = sql;
-		            reader = dbcmd.ExecuteReader();
-						           
-			        if(reader.Read())
-		            {
-		            	Response.Redirect("PatientEntry.aspx");
-		            }
-			        else
-			        {
-			             Response.Write("Invalid Username or Password");
-					}	
-				// Adding a comment to see if this reflected. Testing differences
-				// Navya has added one more line
-				//Rohini test 4
-                }
-			
-
-               catch(Exception ex)
-
-               {
-                	Console.WriteLine("Exception " + ex);
-               }
-
-               finally
-
-               {
-			   		if (reader != null)
-	      			{
-	           			reader.Close();
-					}	
-
-			       if (dbcon != null)
-			       {
-			           dbcon.Close();
-				   }	
-
-			       if(dbcmd != null)
-			       {
-			
-			           dbcmd.Dispose();
-			
-					}	
-
-               }
-
-            
+			try
+            {
+				this.ErrorMessage = string.Empty;
+				
+				// Checking for Required Fields
+				if(string.IsNullOrEmpty(txtuser.Text.Trim()))
+				{
+					this.ErrorMessage += "User Name is Required <br />";					
+				}
+				if(string.IsNullOrEmpty(txtpassword.Text.Trim()))
+				{
+					this.ErrorMessage += "Password is Required<br />";					
+				}
+				
+				//Checking for Errors
+				if(string.IsNullOrEmpty(this.ErrorMessage))
+				{
+					DataSet ds = BaseDA.ExecuteDataSet(string.Format("select * from login where username = '{0}' and password ='{1}'",
+			                                       BaseDA.Escape(txtuser.Text), BaseDA.Escape(txtpassword.Text)));				
+					if(ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
+					{
+						DataRow dr = ds.Tables[0].Rows[0];						
+						if(dr != null)
+						{
+							if(dr["Id"] != null)
+							{
+								this.UserId	= Convert.ToInt32(dr["Id"]);
+								this.UserName = dr["lastname"].ToString()  + " " + dr["firstname"].ToString();
+							}
+						}
+					}
+					if(this.UserId > 0)
+					{
+						Response.Redirect("PatientHist.aspx", false);
+					}
+					else
+					{
+						this.ErrorMessage += "Invalid Username or Password";
+					}
+				}
+			}
+			catch(Exception ex)
+            {
+               	this.ErrorMessage = "Exception " + ex;
+            }               
         }
 
         protected void btnCancel_Click(object sender, EventArgs e)
