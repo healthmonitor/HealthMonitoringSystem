@@ -31,22 +31,41 @@ namespace HealthMonitorSystem
 		            dbcon.Open();
 		            dbcmd = dbcon.CreateCommand();
 					
-					string userName = txtUserId.Text;
+					string userName = txtUserId.Text;				
+					Response.Write(userName);
+				
 					string password = txtPassword.Text;
+					Response.Write(password);
+				
 				    string firstName = txtFirstName.Text;
+					Response.Write(firstName);
+				
 				    string lastName = txtLastName.Text;
-				    //string gender = 
-					//DateTime bdate = new DateTime();
-				    string addr = txtAddress.Text;
-				//	string securityQuestion = "";
+					Response.Write(lastName);
+				
+					string gender = listGender.SelectedItem.Value.ToString();	
+					Response.Write(gender);
+					
+				//	DateTime bDate =  birthDate.SelectedDate;
+				
+					
+				   
+					string addr = txtAddress.Text;
+					Response.Write(addr);
+				
+					string securityQuestion = listSecurityQuestion.SelectedItem.Value.ToString();
+					Response.Write(securityQuestion);
 					string answer = txtAnswer.Text;
-				
-				
+					Response.Write(answer);		
 		           
-		            string sql = string.Format("select * from login where username = '{0}' and password ='{1}'",userName,password);
+		            //string sql = string.Format("INSERT INTO LOGIN (username ,password,firstname,lastname,gender,addr,securityQuestion,answer) VALUES ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}')"
+				      //                     ,userName,password,firstName,lastName,gender,addr,securityQuestion,answer);
+				
+					string sql = string.Format("INSERT INTO LOGIN (username ,password,firstname,lastname,gender) VALUES ('{0}','{1}','{2}','{3}','{4}')",userName,password,firstName,lastName,gender);
+				
 		            dbcmd.CommandText = sql;
-		            
-						           
+		            dbcmd.ExecuteNonQuery();
+					          
 			       
                 }
 

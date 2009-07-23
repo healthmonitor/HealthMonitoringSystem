@@ -41,31 +41,16 @@
           <tr>
             <td>Gender:</td> 
             <td>
-            <select id="sex" name=".sx">
-            <option value="-1">[Select]</option>
-            <option value="m">Male</option>
-            <option value="f">Female</option>
-            </select></td>
+            	<asp:DropDownList ID="listGender" runat="server">
+                    <asp:ListItem Value="M">Male</asp:ListItem>
+                    <asp:ListItem Value="F">Female</asp:ListItem>                                             
+                </asp:DropDownList> 
+            </td>
           </tr> 
           <tr>
             <td ><font color="red">*</font>Date of Birth:</td>
-            <td ><select name=".bmon" id="bmon">
-            <option value="-1" >[Select a Month]</option>
-            <option value="0">January</option>
-            <option value="1">February</option>
-            <option value="2">March</option>
-            <option value="3">April</option>
-            <option value="4">May</option>
-            <option value="5">June</option>
-            <option value="6">July</option>
-            <option value="7">August</option>
-            <option value="8">September</option>
-            <option value="9">October</option>
-            <option value="10">November</option>
-            <option value="11">December</option>
-            </select> &nbsp;
-            <asp:TextBox ID="txtbDay" runat="server"></asp:TextBox>&nbsp;,&nbsp;
-            <asp:TextBox ID="txtbYear" runat="server"></asp:TextBox>
+            <td >
+            	<!--asp:Calendar ID="birthDate" SelectedDate= "DateTime" runat="server" /-->
             </td>
           </tr> 
           
@@ -82,18 +67,19 @@
 		
 		  <tr>
 		    <td width="50%"><font color="red">*</font>Security Question:</td>
-		    <td width="50%"><select id="pwq" name=".pw_q">
-		    <option value="-1" selected>[Select a Question]</option>
-		    <option value="What is your fathers middle name?">What is your father's middle name?</option>
-		    <option value="What was the name of your first school?">What was the name of your first school?</option>
-		    <option value="Who was your childhood hero?">Who was your childhood hero? </option>
-		    <option value="What is your favorite pastime?">What is your favorite pastime?</option>
-		    <option value="What is your all-time favorite sports team?">What is your all-time favorite sports team?</option>
-		    <option value="What was your high school mascot?">What was your high school mascot?</option>
-		    <option value="What make was your first car or bike?">What make was your first car or bike?</option>
-		    <option value="Where did you first meet your spouse?">Where did you first meet your spouse?</option>	
-		    <option value="What is your pets name?">What is your pet's name?</option>
-		    </select></td>
+		    <td width="50%">
+		    	<asp:DropDownList ID="listSecurityQuestion" runat="server">
+                    <asp:ListItem Value = "What is your father's middle name?">What is your father's middle name?</asp:ListItem>
+                    <asp:ListItem Value = "What was the name of your first school?">What was the name of your first school?</asp:ListItem>  
+                    <asp:ListItem Value = "Who was your childhood hero?">Who was your childhood hero?</asp:ListItem>  
+                    <asp:ListItem Value = "What is your favorite pastime?">What is your favorite pastime?</asp:ListItem> 
+                    <asp:ListItem Value = "What is your all-time favorite sports team?">What is your all-time favorite sports team?</asp:ListItem>   
+                    <asp:ListItem Value = "What was your high school mascot?">What was your high school mascot?</asp:ListItem>
+                    <asp:ListItem Value = "What make was your first car or bike?">What make was your first car or bike?</asp:ListItem>
+                    <asp:ListItem Value = "Where did you first meet your spouse?">Where did you first meet your spouse?</asp:ListItem>
+                    <asp:ListItem Value = "What is your pet's name?">What is your pet's name?</asp:ListItem>                                         
+                </asp:DropDownList>     
+		    </td>
 		  </tr> 
 		  
 		  <tr>

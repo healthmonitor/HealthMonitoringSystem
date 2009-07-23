@@ -13,7 +13,7 @@ namespace HealthMonitorSystem {
 	
 	public partial class Register {
 		
-		protected System.Web.UI.WebControls.TextBox txtbDay;
+		protected System.Web.UI.WebControls.DropDownList listGender;
 		
 		protected System.Web.UI.WebControls.TextBox txtAnswer;
 		
@@ -25,7 +25,7 @@ namespace HealthMonitorSystem {
 		
 		protected System.Web.UI.WebControls.TextBox txtAddress;
 		
-		protected System.Web.UI.WebControls.TextBox txtbYear;
+		protected System.Web.UI.WebControls.DropDownList listSecurityQuestion;
 		
 		protected System.Web.UI.WebControls.TextBox txtRetypePwd;
 		
