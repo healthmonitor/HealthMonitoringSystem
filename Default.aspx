@@ -1,16 +1,7 @@
-<%@ Page Language="C#" AutoEventWireup="true"
+<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/HealthMaster.master"
 CodeBehind="Default.aspx.cs" Inherits="HealthMonitorSystem._Default"
 %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml" >
-
-<head runat="server">
-   <title>Login </title>
-</head>
-<body>
-   <form id="form1" runat="server">
+<asp:Content id="login" ContentPlaceHolderID="cphMain" runat="server">
    <div>
    <br /><br />
    <table border="0" width="40%">   
@@ -44,10 +35,6 @@ CodeBehind="Default.aspx.cs" Inherits="HealthMonitorSystem._Default"
 
       </td>
    </tr>
-   </table>
-   <br /><br/>
-   <asp:Label id="lblError" runat="server" ForeColor="Red" > </asp:Label>	
+   </table>   
    </div>
-   </form>
-</body>
-</html>
+</asp:Content>  

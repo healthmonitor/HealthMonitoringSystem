@@ -12,8 +12,8 @@ namespace HealthMonitorSystem
 			base.OnPreRender (e);
 			if(!string.IsNullOrEmpty(this.ErrorMessage))
 			{
-				lblError.Text = this.ErrorMessage;
-				this.ClearErrorMessages();
+				//lblError.Text = this.ErrorMessage;
+				//this.ClearErrorMessages();
 			}
 		}
 
@@ -21,9 +21,7 @@ namespace HealthMonitorSystem
         protected void btnlogin_Click(object sender, EventArgs e)
         {
 			try
-            {
-				this.ErrorMessage = string.Empty;
-				
+            {				
 				// Checking for Required Fields
 				if(string.IsNullOrEmpty(txtuser.Text.Trim()))
 				{
@@ -48,12 +46,25 @@ namespace HealthMonitorSystem
 							{
 								this.UserId	= Convert.ToInt32(dr["Id"]);
 								this.UserName = dr["lastname"].ToString()  + " " + dr["firstname"].ToString();
+								this.IsAdmin = Convert.ToBoolean(dr["isadmin"]);
+								this.IsDoctor = Convert.ToBoolean(dr["isdoctor"]);
 							}
 						}
 					}
 					if(this.UserId > 0)
 					{
-						Response.Redirect("PatientHist.aspx", false);
+						if(IsDoctor)
+						{
+							Response.Redirect("DoctorsPage.aspx", false);
+						}
+						else if(IsAdmin)
+						{
+							
+						}
+						else
+						{
+							Response.Redirect("PatientEntry.aspx", false);
+						}
 					}
 					else
 					{
