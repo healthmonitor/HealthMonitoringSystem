@@ -1,11 +1,12 @@
-﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.50727</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{1540391E-C0BF-4909-BFB9-D1DC038381E8}</ProjectGuid>
-    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <ProjectTypeGuids>{349C5851-65DF-11DA-9384-00065B846F21};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>HealthMonitorSystem</RootNamespace>
@@ -29,15 +30,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Mono.Security, Version=2.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
+    <Reference Include="Mono.Security, Version=2.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>lib\Mono.Security.dll</HintPath>
     </Reference>
-    <Reference Include="NauckIT.PostgreSQLProvider, Version=1.3.6.136, Culture=neutral, PublicKeyToken=e179b4c7dfb3984c, processorArchitecture=MSIL">
+    <Reference Include="NauckIT.PostgreSQLProvider, Version=1.3.6.136, Culture=neutral, PublicKeyToken=e179b4c7dfb3984c">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>lib\NauckIT.PostgreSQLProvider.dll</HintPath>
     </Reference>
-    <Reference Include="Npgsql, Version=2.0.5.0, Culture=neutral, PublicKeyToken=5d8b90d52f46fda7, processorArchitecture=MSIL">
+    <Reference Include="Npgsql, Version=2.0.5.0, Culture=neutral, PublicKeyToken=5d8b90d52f46fda7">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>lib\Npgsql.dll</HintPath>
     </Reference>
@@ -57,36 +58,77 @@
     <Content Include="PatientEntry.aspx" />
     <Content Include="Register.aspx" />
     <Content Include="Web.config" />
+    <Content Include="DoctorsPage.aspx" />
+    <Content Include="ErrorControl.ascx" />
+    <Content Include="HealthMaster.master" />
+    <Content Include="LogOff.aspx" />
+    <Content Include="PatientHist.aspx" />
+    <Content Include="TopControl.ascx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Default.aspx.cs">
-      <SubType>ASPXCodeBehind</SubType>
       <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
     <Compile Include="ForgotPwd.aspx.cs">
-      <SubType>ASPXCodeBehind</SubType>
       <DependentUpon>ForgotPwd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="ForgotPwd.aspx.designer.cs">
       <DependentUpon>ForgotPwd.aspx</DependentUpon>
     </Compile>
     <Compile Include="PatientEntry.aspx.cs">
-      <SubType>ASPXCodeBehind</SubType>
       <DependentUpon>PatientEntry.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="PatientEntry.aspx.designer.cs">
       <DependentUpon>PatientEntry.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Register.aspx.cs">
-      <SubType>ASPXCodeBehind</SubType>
       <DependentUpon>Register.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Register.aspx.designer.cs">
       <DependentUpon>Register.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="BaseDA.cs" />
+    <Compile Include="BasePage.cs" />
+    <Compile Include="DoctorsPage.aspx.cs">
+      <DependentUpon>DoctorsPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DoctorsPage.aspx.designer.cs">
+      <DependentUpon>DoctorsPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ErrorControl.ascx.cs">
+      <DependentUpon>ErrorControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="ErrorControl.ascx.designer.cs">
+      <DependentUpon>ErrorControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="HealthMaster.master.cs">
+      <DependentUpon>HealthMaster.master</DependentUpon>
+    </Compile>
+    <Compile Include="LogOff.aspx.cs">
+      <DependentUpon>LogOff.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LogOff.aspx.designer.cs">
+      <DependentUpon>LogOff.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PatientHist.aspx.designer.cs">
+      <DependentUpon>PatientHist.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PatientHist.aspx.cs">
+      <DependentUpon>PatientHist.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="TopControl.ascx.cs">
+      <DependentUpon>TopControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="TopControl.ascx.designer.cs">
+      <DependentUpon>TopControl.ascx</DependentUpon>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
@@ -112,5 +154,10 @@
         </WebProjectProperties>
       </FlavorProperties>
     </VisualStudio>
+    <MonoDevelop>
+      <Properties VerifyCodeBehindFields="true" VerifyCodeBehindEvents="true">
+        <XspParameters Port="8080" Address="127.0.0.1" SslMode="None" SslProtocol="Default" KeyType="None" CertFile="" KeyFile="" PasswordOptions="None" Password="" Verbose="true" />
+      </Properties>
+    </MonoDevelop>
   </ProjectExtensions>
 </Project>
