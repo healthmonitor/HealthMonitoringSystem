@@ -59,7 +59,7 @@ namespace HealthMonitorSystem
 						}
 						else if(IsAdmin)
 						{
-							
+							Response.Redirect("ClerksPage.aspx",false);
 						}
 						else
 						{

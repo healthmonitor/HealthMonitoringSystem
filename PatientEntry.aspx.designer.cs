@@ -13,7 +13,11 @@ namespace HealthMonitorSystem {
 	
 	public partial class PatientEntry {
 		
+		protected System.Web.UI.WebControls.Button btnHelp;
+		
 		protected System.Web.UI.WebControls.TextBox txtglucose;
+		
+		protected System.Web.UI.WebControls.Content login;
 		
 		protected System.Web.UI.WebControls.TextBox txtpulserate;
 		
@@ -25,9 +29,7 @@ namespace HealthMonitorSystem {
 		
 		protected System.Web.UI.WebControls.RequiredFieldValidator BPGlucoseRequired;
 		
-		protected System.Web.UI.WebControls.TextBox txtpid;
-		
-		protected System.Web.UI.HtmlControls.HtmlForm form1;
+		protected System.Web.UI.WebControls.DropDownList listpid;
 		
 		protected System.Web.UI.WebControls.RequiredFieldValidator BPlowRequired;
 		
@@ -37,13 +39,13 @@ namespace HealthMonitorSystem {
 		
 		protected System.Web.UI.WebControls.DropDownList listpainlevel;
 		
-		protected System.Web.UI.WebControls.Button btnClear;
-		
 		protected System.Web.UI.WebControls.Button btnpatient;
 		
 		protected System.Web.UI.WebControls.RequiredFieldValidator DescriptionRequired;
 		
 		protected System.Web.UI.WebControls.RequiredFieldValidator PulserateRequired;
+		
+		protected System.Web.UI.WebControls.Label lblfirstName;
 		
 		protected System.Web.UI.WebControls.TextBox txttemp;
 		

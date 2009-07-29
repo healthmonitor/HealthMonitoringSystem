@@ -1,28 +1,33 @@
-<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="PatientEntry.aspx.cs" Inherits="HealthMonitorSystem.PatientEntry" %>
+<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/HealthMaster.master"
+CodeBehind="PatientEntry.aspx.cs" Inherits="HealthMonitorSystem.PatientEntry"
+%>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml" >
-<head runat="server">
+<asp:Content id="login" ContentPlaceHolderID="cphMain" runat="server">
+<head>
     <title>Patient Entry</title>
 </head>
-<body>
-<br /><b><p align="center">Health Status Update Form</p></b>
+    
+    <br /><b><p align="center">Health Status Update Form</p></b>
 <font size="2">
 <p align="left">Enter your medical information on this form</p>
 <p align="left">Click on Submit to record the information</p>
 <p align="left">Click on Cancel to clear all fields</p>
 </font>
-<br/>
-	
-    <form id="form1" runat="server">
-      
-             <table border="0" width="40%">
 
-           <tr>
-               <td>Patient ID </td>
+<br/>
+
+   <div>
+   <br /><br />
+   <table border="0" width="40%">   
+<tr>
+               <td>Patient </td>
                <td>
-                    <asp:TextBox ID="txtpid" runat="server" ValidationGroup = "Patient"></asp:TextBox>
+                    <!--asp:TextBox ID="txtpid" runat="server" ValidationGroup = "Patient"></asp:TextBox-->
+                     <asp:DropDownList ID="listpid" runat="server">
+                     <asp:ListItem>Select</asp:ListItem>
+                      </asp:DropDownList> 
+                    <asp:Label id="lblfirstName" runat="server"> </asp:Label>
+                        
 	           </td>
            </tr>
 
@@ -32,6 +37,8 @@
                <td>
     	             <asp:TextBox ID="txttemp" runat="server" ValidationGroup="Patient"></asp:TextBox>
     	             <td>Fahrenheit</td>
+    	             <td></td>
+		
     	             <asp:RequiredFieldValidator ID="TempRequired"runat="server" ControlToValidate="txttemp" 
                      ErrorMessage="Please Enter the recorded temperature." ToolTip="Please Enter the recorded temperature."  >*</asp:RequiredFieldValidator>
                </td>
@@ -118,36 +125,20 @@
                      ErrorMessage="Please Enter the Brief Description." ToolTip="Please Enter the Brief Description."  >*</asp:RequiredFieldValidator>
                </td>
            </tr>
+   
+   
+   <tr><td colspan=2>&nbsp;</td></tr>
+   
+   <tr>
+       <td colspan="2" align="center"> &nbsp;
+           <asp:Button ID="btnpatient" Text="Submit" runat="server" OnClick="btnpatient_Click"  ValidationGroup="Patient"/>
+               &nbsp; &nbsp;
+           <asp:Button ID="btnCancel" Text="Cancel" runat="server" OnClick="btnCancel_Click"  ValidationGroup="Patient"/>
+           &nbsp; &nbsp;
+           <asp:Button ID="btnHelp" Text="Help" runat="server" OnClick="btnHelp_Click"  ValidationGroup="Patient"/>
 
-			<!--tr>
-               <td>Entry Date </td>
-
-               <td>
-                     <asp:TextBox ID="txtentrydate" runat="server" ValidationGroup="Patient"></asp:TextBox>
-               </td>
-           </tr-->
-
-
-
-           <tr><td colspan=2>&nbsp;</td></tr>
-           <tr>
-               <td colspan="2" align="center">
-               <asp:Button ID="btnpatient" Text="Submit" runat="server" OnClick="btnpatient_Click"  ValidationGroup="Patient"/>
-                  &nbsp; &nbsp;
-               <asp:Button ID="btnClear" Text="Clear" runat="server" OnClick="btnpatient_Click"  ValidationGroup="Patient"/>
-                  &nbsp; &nbsp;
-                <asp:Button ID="btnCancel" Text="Cancel" runat="server" OnClick="btnpatient_Click"  ValidationGroup="Patient"/>
-                  &nbsp; &nbsp;
-                  
-               </td>
-
-          </tr>
-
-          <tr><td colspan=2>&nbsp;</td></tr>
-
-          
-       </table>
-
-   </form>
-</body>
-</html>
+      </td>
+   </tr>
+   </table>   
+   </div>
+</asp:Content>  

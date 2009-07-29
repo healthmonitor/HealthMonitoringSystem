@@ -49,7 +49,7 @@ namespace HealthMonitorSystem
 			
 		//	btnHelp.Attributes.Add("onclick","window.open("temphelp.aspx","help","width=800,height=500,top=100,left=100,scrollbars=yes");
 			
-		// working btnHelp.Attributes.Add("onclick", "window.open('PatientEntryhelp.aspx',null,'left=400, top=100, height=250, width= 400, status=no, resizable= no, scrollbars= yes, toolbar= no,location= no, menubar= no');"); 
+		btnHelp.Attributes.Add("onclick", "window.open('PatientEntryhelp.aspx',null,'left=400, top=100, height=250, width= 400, status=no, resizable= no, scrollbars= yes, toolbar= no,location= no, menubar= no');"); 
         }
 
 		
