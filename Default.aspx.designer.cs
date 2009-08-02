@@ -17,13 +17,13 @@ namespace HealthMonitorSystem {
 		
 		protected System.Web.UI.WebControls.TextBox txtpassword;
 		
-		protected System.Web.UI.WebControls.Content login;
-		
 		protected System.Web.UI.WebControls.Button btnlogin;
 		
 		protected System.Web.UI.WebControls.LinkButton lnkRegister;
 		
 		protected System.Web.UI.WebControls.LinkButton lnkforgotpwd;
+		
+		protected System.Web.UI.WebControls.Content login;
 		
 		protected System.Web.UI.WebControls.TextBox txtuser;
 	}
