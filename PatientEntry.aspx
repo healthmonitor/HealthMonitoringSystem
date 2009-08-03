@@ -1,8 +1,9 @@
-<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/HealthMaster.master"
-CodeBehind="PatientEntry.aspx.cs" Inherits="HealthMonitorSystem.PatientEntry"
-%>
+<%@ Page Language="C#" MasterPageFile="~/HealthMaster.master" CodeBehind="PatientEntry.aspx.cs" Inherits="HealthMonitorSystem.PatientEntry"%>
+
 
 <asp:Content id="login" ContentPlaceHolderID="cphMain" runat="server">
+<br/>
+	<asp:LinkButton id="lnkBack"  OnClick="lnkBack_Click" Visible="true" runat="server" >Back</asp:LinkButton>
 <head>
     <title>Patient Entry</title>
 </head>
@@ -10,6 +11,7 @@ CodeBehind="PatientEntry.aspx.cs" Inherits="HealthMonitorSystem.PatientEntry"
     <br /><b><p align="center">Health Status Update Form</p></b>
 <font size="2">
 <p align="left">Enter your medical information on this form</p>
+<p align="left">* - Indicitaes Required Fields on this form</p>
 <p align="left">Click on Submit to record the information</p>
 <p align="left">Click on Cancel to clear all fields</p>
 </font>
@@ -22,12 +24,11 @@ CodeBehind="PatientEntry.aspx.cs" Inherits="HealthMonitorSystem.PatientEntry"
 <tr>
                <td>Patient </td>
                <td>
-                    <!--asp:TextBox ID="txtpid" runat="server" ValidationGroup = "Patient"></asp:TextBox-->
-                     <asp:DropDownList ID="listpid" runat="server">
-                     <asp:ListItem>Select</asp:ListItem>
-                      </asp:DropDownList> 
-                    <asp:Label id="lblfirstName" runat="server"> </asp:Label>
-                        
+				    <asp:DropDownList ID="listpid" runat="server" onselectedindexchanged="Pname_SelectedIndexChanged" AutoPostBack="True">
+                    <asp:ListItem>Select</asp:ListItem>
+                    </asp:DropDownList> 
+                    <td>*</td>
+                    <asp:Label id="lblpatid" runat="server" Visible = "false" > </asp:Label>
 	           </td>
            </tr>
 
@@ -36,11 +37,9 @@ CodeBehind="PatientEntry.aspx.cs" Inherits="HealthMonitorSystem.PatientEntry"
                
                <td>
     	             <asp:TextBox ID="txttemp" runat="server" ValidationGroup="Patient"></asp:TextBox>
+    	             <td>*</td>
     	             <td>Fahrenheit</td>
     	             <td></td>
-		
-    	             <asp:RequiredFieldValidator ID="TempRequired"runat="server" ControlToValidate="txttemp" 
-                     ErrorMessage="Please Enter the recorded temperature." ToolTip="Please Enter the recorded temperature."  >*</asp:RequiredFieldValidator>
                </td>
            </tr>
            
@@ -50,9 +49,8 @@ CodeBehind="PatientEntry.aspx.cs" Inherits="HealthMonitorSystem.PatientEntry"
 				
                <td>
                      <asp:TextBox ID="txtbphigh" runat="server" ValidationGroup="Patient"></asp:TextBox>
+                     <td>*</td>
                      <td>mmHg</td>
-                     <asp:RequiredFieldValidator ID="BPhighRequired"runat="server" ControlToValidate="txtbphigh" 
-                     ErrorMessage="Please Enter the recorded Blood Pressure." ToolTip="Please Enter the recordedBlood Pressure."  >*</asp:RequiredFieldValidator>
                </td>
            </tr>
 
@@ -62,9 +60,8 @@ CodeBehind="PatientEntry.aspx.cs" Inherits="HealthMonitorSystem.PatientEntry"
 				
                <td>
                      <asp:TextBox ID="txtbplow" runat="server" ValidationGroup="Patient"></asp:TextBox>
+                     <td>*</td>
                      <td>mmHg</td>
-                     <asp:RequiredFieldValidator ID="BPlowRequired"runat="server" ControlToValidate="txtbplow" 
-                     ErrorMessage="Please Enter the recorded Blood Pressure." ToolTip="Please Enter the recorded Blood Pressure."  >*</asp:RequiredFieldValidator>
                </td>
            </tr>
 
@@ -75,9 +72,8 @@ CodeBehind="PatientEntry.aspx.cs" Inherits="HealthMonitorSystem.PatientEntry"
 				
                <td>
                      <asp:TextBox ID="txtpulserate" runat="server" ValidationGroup="Patient"></asp:TextBox>
+                     <td>*</td>
                      <td>per minute</td>
-                     <asp:RequiredFieldValidator ID="PulserateRequired"runat="server" ControlToValidate="txtpulserate" 
-                     ErrorMessage="Please Enter the recorded Pulse Rate." ToolTip="Please Enter the recorded Pulse Rate."  >*</asp:RequiredFieldValidator>
                </td>
            </tr>
 
@@ -87,9 +83,8 @@ CodeBehind="PatientEntry.aspx.cs" Inherits="HealthMonitorSystem.PatientEntry"
 				
                <td>
                      <asp:TextBox ID="txtglucose" runat="server" ValidationGroup="Patient"></asp:TextBox>
+                     <td></td>
                      <td>mg / dl</td>
-                     <asp:RequiredFieldValidator ID="BPGlucoseRequired"runat="server" ControlToValidate="txtglucose" 
-                     ErrorMessage="Please Enter the recorded Glucose level." ToolTip="Please Enter the recorded Glucose level."  >*</asp:RequiredFieldValidator>
                </td>
            </tr>
 
@@ -111,20 +106,23 @@ CodeBehind="PatientEntry.aspx.cs" Inherits="HealthMonitorSystem.PatientEntry"
 						<asp:ListItem>9</asp:ListItem>
 						<asp:ListItem>10</asp:ListItem>
                      </asp:DropDownList> 
+                      <td></td>
                      <td>1-Less Pain,10-Severe Pain</td>
                </td>
            </tr>
 
 			<tr>
-
                <td>Description </td>
-
                <td>
                      <asp:TextBox ID="txtdescription" runat="server" ValidationGroup="Patient"></asp:TextBox>
-                     <asp:RequiredFieldValidator ID="DescriptionRequired"runat="server" ControlToValidate="txtdescription" 
-                     ErrorMessage="Please Enter the Brief Description." ToolTip="Please Enter the Brief Description."  >*</asp:RequiredFieldValidator>
                </td>
            </tr>
+			<!--tr>
+               <td>Date </td>
+               <td>
+                    <asp:Label id="lblDate" runat="server" > </asp:Label>               
+               </td>
+           </tr-->
    
    
    <tr><td colspan=2>&nbsp;</td></tr>

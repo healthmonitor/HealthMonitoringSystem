@@ -122,30 +122,32 @@ namespace HealthMonitorSystem
       }
 
 
-
-
-
        		
 		protected void btnPatientEntry_Click(object sender, EventArgs e)
 
        {
-  /* StringBuilder sb = new StringBuilder();
-        sb.Append("<script>");
-        sb.Append("window.open('http://msdn.microsoft.com', '', '');");
-        sb.Append("</scri");
-        sb.Append("pt>");
-
-        Page.RegisterStartupScript("test", sb.ToString());*/
 			Response.Redirect("PatientEntry.aspx");
 
        }
 
-		       protected void btnLink_Click(object sender, EventArgs e)
+		protected void btnPatientHistory_Click(object sender, EventArgs e)
 
        {
-			
+			Response.Redirect("PatientHist.aspx");
+
+       }
+
+		/*protected void btnDocPatHistory_Click(object sender, EventArgs e)
+
+       {
+			Response.Redirect("PatientHist.aspx");
+
+       }*/
+
+		protected void btnDocPatEntry_Click(object sender, EventArgs e)
+
+       {
 			Response.Redirect("DoctorPatient.aspx");
-			
 
        }
 

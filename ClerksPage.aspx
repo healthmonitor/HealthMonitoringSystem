@@ -23,10 +23,9 @@ CodeBehind="ClerksPage.aspx.cs" Inherits="HealthMonitorSystem.ClerksPage"
    
    <tr>
        <td colspan="2" align="center"> &nbsp;
-           <asp:Button ID="btnLink" Text="Doctor Patient Link" runat="server" OnClick="btnLink_Click"  ValidationGroup="Clerk"/>
+       		<asp:Button ID="btnPatientEntry" Text="Patient Entry" runat="server" OnClick="btnPatientEntry_Click"  ValidationGroup="Clerk"/> <br/><br/>
+           <asp:Button ID="btnDocPatEntry" Text="Doctor Patient Link" runat="server" OnClick="btnDocPatEntry_Click"  ValidationGroup="Clerk"/> <br/><br/>
            &nbsp; &nbsp;
-           <asp:Button ID="btnPatientEntry" Text="Patient Entry" runat="server" OnClick="btnPatientEntry_Click"  ValidationGroup="Clerk"/>
-
       </td>
    </tr>
    </table>   

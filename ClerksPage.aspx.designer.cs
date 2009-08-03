@@ -13,7 +13,7 @@ namespace HealthMonitorSystem {
 	
 	public partial class ClerksPage {
 		
-		protected System.Web.UI.WebControls.Button btnLink;
+		protected System.Web.UI.WebControls.Button btnDocPatEntry;
 		
 		protected System.Web.UI.WebControls.Button btnPatientEntry;
 		

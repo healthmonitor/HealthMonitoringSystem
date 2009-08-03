@@ -25,27 +25,17 @@ namespace HealthMonitorSystem {
 		
 		protected System.Web.UI.WebControls.Button btnCancel;
 		
-		protected System.Web.UI.WebControls.RequiredFieldValidator BPhighRequired;
-		
-		protected System.Web.UI.WebControls.RequiredFieldValidator BPGlucoseRequired;
-		
 		protected System.Web.UI.WebControls.DropDownList listpid;
 		
-		protected System.Web.UI.WebControls.RequiredFieldValidator BPlowRequired;
+		protected System.Web.UI.WebControls.Label lblpatid;
 		
 		protected System.Web.UI.WebControls.TextBox txtdescription;
-		
-		protected System.Web.UI.WebControls.RequiredFieldValidator TempRequired;
 		
 		protected System.Web.UI.WebControls.DropDownList listpainlevel;
 		
 		protected System.Web.UI.WebControls.Button btnpatient;
 		
-		protected System.Web.UI.WebControls.RequiredFieldValidator DescriptionRequired;
-		
-		protected System.Web.UI.WebControls.RequiredFieldValidator PulserateRequired;
-		
-		protected System.Web.UI.WebControls.Label lblfirstName;
+		protected System.Web.UI.WebControls.LinkButton lnkBack;
 		
 		protected System.Web.UI.WebControls.TextBox txttemp;
 		

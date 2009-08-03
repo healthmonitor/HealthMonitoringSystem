@@ -28,59 +28,60 @@ using Npgsql;
 
 namespace HealthMonitorSystem
 {
-    //public partial class PatientEntry : System.Web.UI.Page
+
 	public partial class PatientEntry : BasePage
 	{
+		String patid;
+		int pain;
 		
-		/*protected override void OnPreRender (System.EventArgs e)
-		{
-			base.OnPreRender (e);
-			lblName.Text = "Welcome <br />" + this.UserName;
-			if(!string.IsNullOrEmpty(this.ErrorMessage))
-			{
-				lblError.Text = this.ErrorMessage;
-				this.ClearErrorMessages();
-			}
-		}*/
 		
 		protected void Page_Load(object sender, EventArgs e)
         {
-			//btnClear.Attributes.Add("onClick","Empty();");
 			
-		//	btnHelp.Attributes.Add("onclick","window.open("temphelp.aspx","help","width=800,height=500,top=100,left=100,scrollbars=yes");
+			btnHelp.Attributes.Add("onclick", "window.open('PatientEntryhelp.aspx',null,'left=400, top=100, height=250, width= 400, status=no, resizable= no, scrollbars= yes, toolbar= no,location= no, menubar= no');"); 
 			
-		btnHelp.Attributes.Add("onclick", "window.open('PatientEntryhelp.aspx',null,'left=400, top=100, height=250, width= 400, status=no, resizable= no, scrollbars= yes, toolbar= no,location= no, menubar= no');"); 
-        }
-
-		
-		
-    
-		protected override void OnLoad (System.EventArgs e)
-		{
-			base.OnLoad (e);
-			if(this.UserId > 0)
-			{									
-				DataSet ds = BaseDA.ExecuteDataSet("SELECT id,firstname,lastname FROM public.Login where isadmin = false and isdoctor = false");			
-				
-				//gvHist.DataSource = ds;
-				//gvHist.DataBind();
+			
+			
+			if (string.IsNullOrEmpty(Request.QueryString["userid"]))
+			{
+				String sql1 = "SELECT id FROM public.Login where isadmin = false and isdoctor = false and firstname||' '||lastname = '" + listpid.SelectedItem.Value + "'";
+				DataSet ds = BaseDA.ExecuteDataSet(sql1);			
 				
 				if(ds != null )
 				{
 					if(ds.Tables.Count > 0)
 					{
-						//gvHist.DataSource = ds.Tables[0];
-						//gvHist.DataBind();
+						DataTable dt = ds.Tables[0];
+						foreach (DataRow dr in dt.Rows)
+						{
+						 lblpatid.Text = dr["id"].ToString();
+						}	
+					}
+				}
+				
+			}
+        }
+
+		protected override void OnLoad (System.EventArgs e)
+		{
+			string fname,lname;
+
+			
+			
+		base.OnLoad (e);
+			if(this.UserId > 0)
+			{			
+				String sql = "SELECT id,firstname,lastname,firstname||' '||lastname as fullname FROM public.Login where isadmin = false and isdoctor = false";
+				DataSet ds = BaseDA.ExecuteDataSet(sql);			
+				if(ds != null )
+				{
+					if(ds.Tables.Count > 0)
+					{
 						listpid.DataSource = ds;
-						listpid.DataTextField = "id";
-						listpid.DataValueField = "id";
+						listpid.DataTextField = "fullname";
+						listpid.DataValueField = "fullname";
 						listpid.DataBind();
-						
-						/*listpid.DataTextField = "firstname" + "lastname";
-						listpid.DataValueField = "firstname" + "lastname";
-						listpid.DataBind();*/
-							
-						                        
+						DataTable dt = ds.Tables[0];
 					}
 					else
 					{	
@@ -91,13 +92,14 @@ namespace HealthMonitorSystem
 				{
 					this.ErrorMessage += "DataSet is null";
 				}
+
 			}
 			else
 			{
 				this.ErrorMessage += "Please login to the System for further Access <br />";
 				Response.Redirect("Default.aspx");
 			}
-		}
+	}
 
 		
 		
@@ -105,140 +107,185 @@ namespace HealthMonitorSystem
 		       protected void btnpatient_Click(object sender, EventArgs e)
 
        {
-			IDataReader reader;
-			IDbConnection dbconn;
-			IDbCommand dbcmd;
 
 	    try
 	
 	       {
-				
-	
-	          /*string connectionString = "Server=db.cecs.pdx.edu;" + "Port=5432;" + "Database=jammulan;" + "User ID=jammulan;" + "Password=kr!m22Uc;";
-	
-	
-	
-		       System.Data.IDbConnection dbcon;
-		
-		
-		
-		       dbcon = new Npgsql.NpgsqlConnection(connectionString);
-		
-			
-		       dbcon.Open();
-				
-		       dbcmd = dbcon.CreateCommand();*/
-				
-		
-		       int pid = int.Parse(listpid.Text);
-		       int temp = int.Parse(txttemp.Text);
-			   
-				
-			   int bphigh = int.Parse(txtbphigh.Text);
-		       int bplow = int.Parse(txtbplow.Text);
-			   int pulserate = int.Parse(txtpulserate.Text);
-			   int gluc = int.Parse(txtglucose.Text);
-			 
-				
-		       int painlevel = int.Parse(listpainlevel.SelectedItem.Value);
-		
-			   string description = txtdescription.Text;
-				
-		       			
-		       //string sql = string.Format("insert into patient(pid,temperature,bphigh,bplow,glucose,painlevel,description) values ({0},{1},{2},{3},{4},{5},{6})",pid,temp,bphigh,bplow,gluc,painlevel,description);
-				
-				/*string sql = string.Format("insert into patient(pid,temperature,bphigh,bplow,pulserate) values ({0},{1},{2},{3},{4})",pid,temp,bphigh,bplow,pulserate);
-				
-		       dbcmd.CommandText = sql;
-			    dbcmd.ExecuteNonQuery();
-				dbcon.Close();*/
-				
-				//DataSet ds = BaseDA.ExecuteDataSet("insert into patient(pid,temperature,bphigh,bplow,pulserate)" + "values ({0},{1},{2},{3},{4})," + pid +"," + temp + "," + bphigh + "," + bplow + "," + pulserate + ");";			
-				
-				string sql = "," + pid + "," + temp + "," + bphigh + "," + bplow + "," + pulserate;
-				DataSet dsinsert = BaseDA.ExecuteDataSet("insert into patient(pid,temperature,bphigh,bplow,pulserate) values ({0},{1},{2},{3},{4})" + sql);
-		
-		       //System.Data.IDataReader reader = dbcmd.ExecuteReader();
-		
-				
-		
-		/*       if(reader.Read())
-		
-		       {
-		
-		               Response.Redirect("PatientEntry.aspx");
-		
-		
-		
-		       }
-		
-		               else
-		
-		               {
-		
-		                       Response.Write("Invalid Username or Password");
-		
-		               }*/
 		
 	
+				if(string.IsNullOrEmpty(listpid.Text.Trim()))
+				{
+					this.ErrorMessage += "No Patient Selected <br />";					
+				}
+				
+				if((string.IsNullOrEmpty(txttemp.Text.Trim())))
+				{
+					this.ErrorMessage += "Temperature Is Required. <br />";					
+				}
+				else
+				{
+					 if (!CheckIfNumbericTemp ( txttemp.Text ))
+					 {
+					    this.ErrorMessage += "Temperature should be a Numeric Value<br />";	
+					 }
+					else
+					{
+						if ((Convert.ToDouble(txttemp.Text) <= 80.00) || (Convert.ToDouble(txttemp.Text) >= 120.00))
+						{
+							this.ErrorMessage += "Temperature should be a positive number between 80 and 120, decimal numbers are accepted. <br />";					
+						}
+					}		
+				}
+				if (string.IsNullOrEmpty(txtbphigh.Text.Trim()))
+				{
+					this.ErrorMessage += "Blood Pressure - HIGH Is Required. <br />";					
+				}
+				else
+				{
+					 if (!CheckIfNumberic ( txtbphigh.Text ))
+					 {
+					    this.ErrorMessage += "Blood Pressure - HIGH should be Numeric Value<br />";	
+					 }
+					else
+					{
+						if ((txtbphigh.Text.Length) > 5)
+						{
+							this.ErrorMessage += "Invalid Blood Pressure - HIGH value.Digits Cannot be Greater than 5 <br />";
+						}
+						else
+						{
+							if (((Convert.ToInt32(txtbphigh.Text) <= 0)))
+							{
+								this.ErrorMessage += "Blood Pressure - HIGH value must be positive number, decimal numbers are not accepted. <br />";					
+							}
+						}
+					}
+				}
+				if (string.IsNullOrEmpty(txtbplow.Text.Trim()))
+				{
+					this.ErrorMessage += "Blood Pressure - LOW Is Required. <br />";					
+				}
+				else
+				{
+					 if (!CheckIfNumberic ( txtbplow.Text ))
+					 {
+					    this.ErrorMessage += "Blood Pressure - LOW should be Numeric Value<br />";	
+					 }
+					else
+					{
+						if ((txtbplow.Text.Length) > 5)
+						{
+							this.ErrorMessage += "Invalid Blood Pressure - LOW value.Digits Cannot be Greater than 5 <br />";
+						}
+						else
+						{
+							if (((Convert.ToInt32(txtbplow.Text) <= 0))) 
+							{
+								this.ErrorMessage += "Blood Pressure - LOW value must be positive number, decimal numbers are not accepted. <br />";					
+							}
+						}
+					}
+				}
+				if (string.IsNullOrEmpty(txtpulserate.Text.Trim()))
+				{
+					this.ErrorMessage += "Pulse Rate Is Required. <br />";					
+				}
+				else
+				{
+					 if (!CheckIfNumberic ( txtpulserate.Text ))
+					 {
+					    this.ErrorMessage += "Pulse Rate should be a Numeric Value<br />";	
+					 }
+					else
+					{
+
+						if ( ((Convert.ToInt32(txtpulserate.Text) <= 20)) || ((Convert.ToInt32(txtpulserate.Text) >= 200)))
+						{
+							this.ErrorMessage += "Pulse Rate must be a positive number between 20 and 200, decimal numbers are not accepted. <br />";					
+						}
+					}
+				}
+				if (string.IsNullOrEmpty(txtglucose.Text.Trim()))
+				{
+				}
+				else
+				{
+					 if (!CheckIfNumberic ( txtglucose.Text ))
+					 {
+					    this.ErrorMessage += "Glucose should be a Numeric Value <br />";	
+					 }
+					else
+					{
+
+						if ((Convert.ToInt32(txtglucose.Text) <= 20) || (Convert.ToInt32(txtglucose.Text) >= 300))
+						{
+							this.ErrorMessage += "Glucose level must be a positive number between 20 and 300. Decimal numbers are not accepted. <br />";					
+						}
+					}
+				}
+
+				
+   			if (string.IsNullOrEmpty(ErrorMessage))
+            {
+		       string sql = string.Format("INSERT into public.patient (pid,temperature,bphigh,bplow,glucose,painlevel,description,entrydate,pulserate) VALUES (" + lblpatid.Text + "," + txttemp.Text + "," + txtbphigh.Text + "," + txtbplow.Text + "," + txtglucose.Text + "," + listpainlevel.Text + ",'" + txtdescription.Text +  "',CURRENT_DATE," + txtpulserate.Text + ")");
+			   int dbinsert = BaseDA.ExecuteNonQuery(sql);
+				if (dbinsert != -1)
+						this.ErrorMessage = "Records Inserted Successfully";
+			}					 
+				
+
+		    
 	       }
 	
 	       catch(Exception ex)
 	
 	       {
 	
-	               Console.WriteLine("Exception " + ex);
+               	this.ErrorMessage = "Exception " + ex;
 	
 	       }
-	
-	       finally
-	
-	       {
-	
-	               /*if (reader != null)
-	
-	               {
-	
-	                   reader.Close();
-	
-	               }
-	
-	               if (dbcon != null)
-	
-	               {
-	
-	                   dbcon.Close();
-	
-	               }
-	
-	               if(dbcmd != null)
-	
-	               {
-	
-	                   dbcmd.Dispose();
-	
-	               }*/
-	
-			}
-                       
+	                       
       }
 
 
+			
+		protected void Pname_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			String sql1 = "SELECT id FROM public.Login where isadmin = false and isdoctor = false and firstname||' '||lastname = '" + listpid.SelectedItem.Value + "'";
+				DataSet ds = BaseDA.ExecuteDataSet(sql1);			
+				
+				if(ds != null )
+				{
+					if(ds.Tables.Count > 0)
+					{
+						DataTable dt = ds.Tables[0];
+						foreach (DataRow dr in dt.Rows)
+						{
+						 lblpatid.Text = dr["id"].ToString();
+						}	
+					}
+				}
+
+		}
 
 
+		protected void lnkBack_Click (object sender, System.EventArgs e)
+		{
+			if(this.IsAdmin)
+			{
+				Response.Redirect("~/ClerksPage.aspx", true);
+			}
+			else
+			{
+				Response.Redirect("~/Default.aspx", true);
+			}
+		}
 
        		
 		protected void btnHelp_Click(object sender, EventArgs e)
 
        {
-  /* StringBuilder sb = new StringBuilder();
-        sb.Append("<script>");
-        sb.Append("window.open('http://msdn.microsoft.com', '', '');");
-        sb.Append("</scri");
-        sb.Append("pt>");
 
-        Page.RegisterStartupScript("test", sb.ToString());*/
-			
 
        }
 
@@ -251,9 +298,58 @@ namespace HealthMonitorSystem
 
        }
 
-		
-    }
+
+ bool CheckIfNumbericTemp( string myNumber )
+{
+bool IsNum = true;
+for( int index = 0; index < myNumber.Length; index++ )
+   {
+				
+	if (myNumber[ index ].ToString().Contains("."))
+	{
+	}
+	else
+	{
+	    if( !Char.IsNumber( myNumber[ index ] ))
+	    {
+	    IsNum = false;
+	    break;
+	    }
+	}	
+   }
+return IsNum;
+}
+
+ bool CheckIfNumberic( string myNumber )
+{
+bool IsNum = true;
+for( int index = 0; index < myNumber.Length; index++ )
+   {
+				
+	    if( !Char.IsNumber( myNumber[ index ] ))
+	    {
+	    IsNum = false;
+	    break;
+	    }
+   }
+return IsNum;
+}
+
+string RelativeURL(string relativeURL)
+
+{
+
+Image imgTemp = new Image();
+
+imgTemp.ImageUrl = relativeURL;
+
+return imgTemp.ResolveClientUrl(imgTemp.ImageUrl);
+
+}
 	
+
+    }
+
 	
 }
 
