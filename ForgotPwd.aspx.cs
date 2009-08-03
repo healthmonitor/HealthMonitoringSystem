@@ -108,11 +108,15 @@ namespace HealthMonitorSystem
                         }
 
                     }
+					else
+					{
+						ErrorMessage = "User does not exist. Please check if you have entered valid information </BR>";
+					}
                 }
             }
             catch(Exception)
             {
-                //ErrorMessage = "Exception " + ex;
+                ErrorMessage = "Exception " + ex;
                 lblErrors.Text = ErrorMessage;
             }
         }
