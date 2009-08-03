@@ -49,10 +49,10 @@ namespace HealthMonitorSystem
                 {
                     ErrorMessage += "User name is required <br/>";
                 }
-                if (Int16.Parse(listSecQuestion.SelectedValue.Trim())== -1)
+               /* if (Int16.Parse(listSecQuestion.SelectedValue.Trim())== -1)
                 {				
                     ErrorMessage += "Security question is required <br/>";
-                }
+                }*/
                 if (string.IsNullOrEmpty(txtAnswer.Text.Trim()))
                 {
                     ErrorMessage += "Answer is required <br/>";
