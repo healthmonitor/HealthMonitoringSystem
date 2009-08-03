@@ -114,7 +114,7 @@ namespace HealthMonitorSystem
 					}
                 }
             }
-            catch(Exception)
+            catch(Exception ex)
             {
                 ErrorMessage = "Exception " + ex;
                 lblErrors.Text = ErrorMessage;

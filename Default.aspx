@@ -1,5 +1,5 @@
 <%-- 
-  Copyright (c) 2009 Navya Jammula.
+  Copyright (c) 2009 Navya Jammula,Anuja Kharade,Rohini Venkataramaiah. 
 
   This file is part of HealthMonitoringSystem.
   HealthMonitoringSystem is free software: you can redistribute it and/or modify
