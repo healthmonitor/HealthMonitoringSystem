@@ -50,72 +50,87 @@ namespace HealthMonitorSystem
 	{
 		String patid;
 		int pain;
-		
+		String url;
 		
 		protected void Page_Load(object sender, EventArgs e)
         {
 			
 			btnHelp.Attributes.Add("onclick", "window.open('PatientEntryhelp.aspx',null,'left=400, top=100, height=250, width= 400, status=no, resizable= no, scrollbars= yes, toolbar= no,location= no, menubar= no');"); 
+			//fetch the previous page navigated
+			url = Request.UrlReferrer.ToString();
+        }
+
+		protected override void OnLoad (System.EventArgs e)
+		{
+			string fname,lname;
+		
+			base.OnLoad (e);
 			
-			
-			
-			if (string.IsNullOrEmpty(Request.QueryString["userid"]))
+
+			//Clerks logs in
+			if (url.Contains("ClerksPage.aspx"))
 			{
-				String sql1 = "SELECT id FROM public.Login where isadmin = false and isdoctor = false and firstname||' '||lastname = '" + listpid.SelectedItem.Value + "'";
-				DataSet ds = BaseDA.ExecuteDataSet(sql1);			
+					lblpatient.Text = "Patient";
+					lblstar.Text = "*";
+					lblpatient.Visible = true;
+					lblstar.Visible = true;
 				
-				if(ds != null )
-				{
-					if(ds.Tables.Count > 0)
+					if(this.UserId > 0)
+					{			
+						String sql = "SELECT id,firstname,lastname,firstname||' '||lastname as fullname FROM public.Login where isadmin = false and isdoctor = false";
+						DataSet ds = BaseDA.ExecuteDataSet(sql);			
+						if(ds != null )
+						{
+							if(ds.Tables.Count > 0)
+							{
+								listpid.DataSource = ds;
+								listpid.DataTextField = "fullname";
+								listpid.DataValueField = "fullname";
+								listpid.DataBind();
+								DataTable dt = ds.Tables[0];
+							}
+							else
+							{	
+								this.ErrorMessage += "No Patient Entry Maintained <br />";
+							}
+						}
+						else
+						{
+							this.ErrorMessage += "DataSet is null";
+						}
+		
+					}
+					else
 					{
-						DataTable dt = ds.Tables[0];
+						this.ErrorMessage += "Please login to the System for further Access <br />";
+						Response.Redirect("Default.aspx");
+					}
+				
+				String sqlid = "SELECT id FROM public.Login where isadmin = false and isdoctor = false and firstname||' '||lastname = '" + listpid.SelectedItem.Value + "'";
+				DataSet dspatid = BaseDA.ExecuteDataSet(sqlid);			
+				
+				if(dspatid != null )
+				{
+					if(dspatid.Tables.Count > 0)
+					{
+						DataTable dt = dspatid.Tables[0];
 						foreach (DataRow dr in dt.Rows)
 						{
 						 lblpatid.Text = dr["id"].ToString();
 						}	
 					}
 				}
-				
-			}
-        }
-
-		protected override void OnLoad (System.EventArgs e)
-		{
-			string fname,lname;
-
-			
-			
-		base.OnLoad (e);
-			if(this.UserId > 0)
-			{			
-				String sql = "SELECT id,firstname,lastname,firstname||' '||lastname as fullname FROM public.Login where isadmin = false and isdoctor = false";
-				DataSet ds = BaseDA.ExecuteDataSet(sql);			
-				if(ds != null )
-				{
-					if(ds.Tables.Count > 0)
-					{
-						listpid.DataSource = ds;
-						listpid.DataTextField = "fullname";
-						listpid.DataValueField = "fullname";
-						listpid.DataBind();
-						DataTable dt = ds.Tables[0];
-					}
-					else
-					{	
-						this.ErrorMessage += "No Patient Entry Maintained <br />";
-					}
-				}
-				else
-				{
-					this.ErrorMessage += "DataSet is null";
-				}
 
 			}
+			//Patient logs in
 			else
 			{
-				this.ErrorMessage += "Please login to the System for further Access <br />";
-				Response.Redirect("Default.aspx");
+				lblpatid.Text = this.UserId.ToString();
+				listpid.Visible = false;
+				lblpatient.Visible = false;
+				lblstar.Visible = false;
 			}
+			
 	}
 
 		
@@ -128,8 +143,8 @@ namespace HealthMonitorSystem
 	    try
 	
 	       {
-		
-	
+				//Field Validations
+				
 				if(string.IsNullOrEmpty(listpid.Text.Trim()))
 				{
 					this.ErrorMessage += "No Patient Selected <br />";					
@@ -241,7 +256,7 @@ namespace HealthMonitorSystem
 					}
 				}
 
-				
+			//Insert Records	
    			if (string.IsNullOrEmpty(ErrorMessage))
             {
 		       string sql = string.Format("INSERT into public.patient (pid,temperature,bphigh,bplow,glucose,painlevel,description,entrydate,pulserate) VALUES (" + lblpatid.Text + "," + txttemp.Text + "," + txtbphigh.Text + "," + txtbplow.Text + "," + txtglucose.Text + "," + listpainlevel.Text + ",'" + txtdescription.Text +  "',CURRENT_DATE," + txtpulserate.Text + ")");
@@ -352,20 +367,9 @@ for( int index = 0; index < myNumber.Length; index++ )
 return IsNum;
 }
 
-string RelativeURL(string relativeURL)
 
-{
-
-Image imgTemp = new Image();
-
-imgTemp.ImageUrl = relativeURL;
-
-return imgTemp.ResolveClientUrl(imgTemp.ImageUrl);
 
 }
-	
-
-    }
 
 	
 }

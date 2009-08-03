@@ -22,6 +22,8 @@ CodeBehind="ClerksPage.aspx.cs" Inherits="HealthMonitorSystem.ClerksPage"
 %>
 
 <asp:Content id="login" ContentPlaceHolderID="cphMain" runat="server">
+<br/>
+	<asp:LinkButton id="lnkBack"  OnClick="lnkBack_Click" Visible="true" runat="server" >Back</asp:LinkButton>
 <head>
     <title>Clerk Activities</title>
 </head>

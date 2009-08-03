@@ -25,11 +25,15 @@ namespace HealthMonitorSystem {
 		
 		protected System.Web.UI.WebControls.Button btnCancel;
 		
+		protected System.Web.UI.WebControls.Label lblstar;
+		
 		protected System.Web.UI.WebControls.DropDownList listpid;
 		
 		protected System.Web.UI.WebControls.Label lblpatid;
 		
 		protected System.Web.UI.WebControls.TextBox txtdescription;
+		
+		protected System.Web.UI.WebControls.Label lblpatient;
 		
 		protected System.Web.UI.WebControls.DropDownList listpainlevel;
 		

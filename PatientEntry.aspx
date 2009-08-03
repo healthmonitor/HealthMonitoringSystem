@@ -22,12 +22,16 @@
    <br /><br />
    <table border="0" width="40%">   
 <tr>
-               <td>Patient </td>
+               <td> 
+               <asp:Label id="lblpatient" runat="server" > </asp:Label>
+               </td>
                <td>
 				    <asp:DropDownList ID="listpid" runat="server" onselectedindexchanged="Pname_SelectedIndexChanged" AutoPostBack="True">
                     <asp:ListItem>Select</asp:ListItem>
                     </asp:DropDownList> 
-                    <td>*</td>
+                    <td>
+                    <asp:Label id="lblstar" runat="server" > </asp:Label>
+                    </td>
                     <asp:Label id="lblpatid" runat="server" Visible = "false" > </asp:Label>
 	           </td>
            </tr>
