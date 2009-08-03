@@ -1,3 +1,22 @@
+<%-- 
+  Copyright (c) 2009 Navya Jammula.
+
+  This file is part of HealthMonitoringSystem.
+  HealthMonitoringSystem is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+  
+  HealthMonitoringSystem is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with HealthMonitoringSystem.  If not, see
+  <http://www.gnu.org/licenses/>.
+
+--%>
 <%@ Master Language="C#" AutoEventWireup="true" CodeFile="HealthMaster.master.cs" Inherits="HealthMaster" %>
 <%@ Register Src="~/TopControl.ascx" TagName="TopControl" TagPrefix="top" %>
 <%@ Register Src="~/ErrorControl.ascx" TagName="ErrorControl" TagPrefix="error" %>
@@ -12,12 +31,14 @@
     <form id="form1" runat="server">
     <div >
     <top:TopControl ID="topc" runat="server" />
-    </div>  <br />  
+    </div>  <br />  <br /><br />
     <div>
         <asp:contentplaceholder id="cphMain" runat="server">
         </asp:contentplaceholder>
     </div> <br />  
     <error:ErrorControl ID="errorsControl" runat="server" />
+    <br /> <br />
+	Copyright &copy; PSU - oss2009 - HealthMonitoringSystem team
     </form>
 </body>
 </html>
