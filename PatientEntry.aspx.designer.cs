@@ -43,6 +43,8 @@ namespace HealthMonitorSystem {
 		
 		protected System.Web.UI.WebControls.TextBox txttemp;
 		
+		protected System.Web.UI.WebControls.Button btnHist;
+		
 		protected System.Web.UI.WebControls.TextBox txtbplow;
 	}
 }

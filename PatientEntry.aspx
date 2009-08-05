@@ -20,7 +20,7 @@
 
    <div>
    <br /><br />
-   <table border="0" width="40%">   
+   <table border="0" width="60%">   
 <tr>
                <td> 
                <asp:Label id="lblpatient" runat="server" > </asp:Label>
@@ -134,11 +134,14 @@
    <tr>
        <td colspan="2" align="center"> &nbsp;
            <asp:Button ID="btnpatient" Text="Submit" runat="server" OnClick="btnpatient_Click"  ValidationGroup="Patient"/>
-               &nbsp; &nbsp;
+           &nbsp; &nbsp;
            <asp:Button ID="btnCancel" Text="Cancel" runat="server" OnClick="btnCancel_Click"  ValidationGroup="Patient"/>
            &nbsp; &nbsp;
            <asp:Button ID="btnHelp" Text="Help" runat="server" OnClick="btnHelp_Click"  ValidationGroup="Patient"/>
-
+           &nbsp; &nbsp;
+		   <asp:Button ID="btnHist" Text="Records" runat="server" OnClick="btnHist_Click"  ValidationGroup="Patient"/>
+		   &nbsp; &nbsp;
+		 
       </td>
    </tr>
    </table>   

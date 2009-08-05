@@ -48,35 +48,37 @@ namespace HealthMonitorSystem
 
 	public partial class PatientEntry : BasePage
 	{
-		String patid;
-		int pain;
-		String url;
 		
 		protected void Page_Load(object sender, EventArgs e)
         {
 			
-			btnHelp.Attributes.Add("onclick", "window.open('PatientEntryhelp.aspx',null,'left=400, top=100, height=250, width= 400, status=no, resizable= no, scrollbars= yes, toolbar= no,location= no, menubar= no');"); 
-			//fetch the previous page navigated
-			url = Request.UrlReferrer.ToString();
-        }
+		}
 
 		protected override void OnLoad (System.EventArgs e)
 		{
-			string fname,lname;
+		}
 		
-			base.OnLoad (e);
+		protected override void OnPreRender (System.EventArgs e)
+		{
+			base.OnPreRender (e);
 			
-
+			btnHelp.Attributes.Add("onclick", "window.open('PatientEntryhelp.aspx',null,'left=400, top=100, height=250, width= 400, status=no, resizable= no, scrollbars= yes, toolbar= no,location= no, menubar= no');"); 
+			
 			//Clerks logs in
-			if (url.Contains("ClerksPage.aspx"))
+			
+			if (IsAdmin == true)
 			{
+					
 					lblpatient.Text = "Patient";
 					lblstar.Text = "*";
 					lblpatient.Visible = true;
 					lblstar.Visible = true;
+					btnHist.Visible = false;
+					listpid.Visible = true;
 				
 					if(this.UserId > 0)
-					{			
+					{		
+					//Fetch all the Patients' list
 						String sql = "SELECT id,firstname,lastname,firstname||' '||lastname as fullname FROM public.Login where isadmin = false and isdoctor = false";
 						DataSet ds = BaseDA.ExecuteDataSet(sql);			
 						if(ds != null )
@@ -87,7 +89,7 @@ namespace HealthMonitorSystem
 								listpid.DataTextField = "fullname";
 								listpid.DataValueField = "fullname";
 								listpid.DataBind();
-								DataTable dt = ds.Tables[0];
+								//DataTable dt = ds.Tables[0];
 							}
 							else
 							{	
@@ -123,26 +125,53 @@ namespace HealthMonitorSystem
 
 			}
 			//Patient logs in
-			else
+			if ((IsAdmin == false) && (IsDoctor == false))
 			{
 				lblpatid.Text = this.UserId.ToString();
 				listpid.Visible = false;
 				lblpatient.Visible = false;
 				lblstar.Visible = false;
+				btnHist.Visible = true;
 			}
-			
 	}
 
-		
-		
         
 		       protected void btnpatient_Click(object sender, EventArgs e)
-
        {
 
 	    try
 	
 	       {
+				this.ErrorMessage = "";
+
+				//clerk
+				if (IsAdmin	== true)			
+				{
+				
+					//populate list box with patient names
+					String sql1 = "SELECT id FROM public.Login where isadmin = false and isdoctor = false and firstname||' '||lastname = '" + listpid.SelectedValue + "'";
+					DataSet ds = BaseDA.ExecuteDataSet(sql1);			
+					
+					if(ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
+							{
+								DataRow dr = ds.Tables[0].Rows[0];						
+								if(dr != null)
+								{
+									if(dr["Id"] != null)
+									{
+										lblpatid.Text = dr["id"].ToString();
+									}
+								}
+							}
+				}
+				
+				//patient
+				//store the patient id to be inserted later for new records
+				if (IsAdmin	== false)			
+				{
+						lblpatid.Text = this.UserId.ToString();
+				}
+				
 				//Field Validations
 				
 				if(string.IsNullOrEmpty(listpid.Text.Trim()))
@@ -256,18 +285,74 @@ namespace HealthMonitorSystem
 					}
 				}
 
+				String sql;
+				int dbinsert=0;
+				
+				
 			//Insert Records	
-   			if (string.IsNullOrEmpty(ErrorMessage))
+   			if (string.IsNullOrEmpty(ErrorMessage)) 
             {
-		       string sql = string.Format("INSERT into public.patient (pid,temperature,bphigh,bplow,glucose,painlevel,description,entrydate,pulserate) VALUES (" + lblpatid.Text + "," + txttemp.Text + "," + txtbphigh.Text + "," + txtbplow.Text + "," + txtglucose.Text + "," + listpainlevel.Text + ",'" + txtdescription.Text +  "',CURRENT_DATE," + txtpulserate.Text + ")");
-			   int dbinsert = BaseDA.ExecuteNonQuery(sql);
-				if (dbinsert != -1)
-						this.ErrorMessage = "Records Inserted Successfully";
-			}					 
+				//glucose is blank, pain and desc are not blank
+				if ((string.IsNullOrEmpty(txtglucose.Text.Trim())) && (listpainlevel.SelectedValue != "Select") && (!string.IsNullOrEmpty(txtdescription.Text.Trim())))
+					{
+						sql = string.Format("INSERT into public.patient (pid,temperature,bphigh,bplow,glucose,painlevel,description,entrydate,pulserate) VALUES (" + lblpatid.Text + "," + txttemp.Text + "," + txtbphigh.Text + "," + txtbplow.Text + "," + "NULL" + "," + listpainlevel.Text + ",'" + txtdescription.Text +  "',CURRENT_DATE," + txtpulserate.Text + ")");
+						dbinsert = BaseDA.ExecuteNonQuery(sql);
+					}
+				
+				//pain and glucose is blank,desc is not blank
+				if ((string.IsNullOrEmpty(txtglucose.Text.Trim())) && (listpainlevel.SelectedValue.Trim().Contains("Select")) && (!string.IsNullOrEmpty(txtdescription.Text.Trim())))
+						
+					{
+						sql = string.Format("INSERT into public.patient (pid,temperature,bphigh,bplow,glucose,painlevel,description,entrydate,pulserate) VALUES (" + lblpatid.Text + "," + txttemp.Text + "," + txtbphigh.Text + "," + txtbplow.Text + "," + "NULL" + "," + "NULL" + ",'" + txtdescription.Text +  "',CURRENT_DATE," + txtpulserate.Text + ")");
+						dbinsert = BaseDA.ExecuteNonQuery(sql);
+					}
 				
 
-		    
-	       }
+				//desc and glucose is blank,pain is not blank
+				if ((string.IsNullOrEmpty(txtglucose.Text.Trim())) && (listpainlevel.SelectedValue != "Select") && (string.IsNullOrEmpty(txtdescription.Text.Trim())))
+					{
+						sql = string.Format("INSERT into public.patient (pid,temperature,bphigh,bplow,glucose,painlevel,description,entrydate,pulserate) VALUES (" + lblpatid.Text + "," + txttemp.Text + "," + txtbphigh.Text + "," + txtbplow.Text + "," + "NULL" + "," + listpainlevel.Text + "," + "NULL" +  ",CURRENT_DATE," + txtpulserate.Text + ")");
+						dbinsert = BaseDA.ExecuteNonQuery(sql);
+					}
+
+				//pain and desc is blank, glucose is not blank
+				if ((!string.IsNullOrEmpty(txtglucose.Text.Trim())) && (listpainlevel.SelectedValue.Trim().Contains("Select")) && (string.IsNullOrEmpty(txtdescription.Text.Trim())))
+					{
+						sql = string.Format("INSERT into public.patient (pid,temperature,bphigh,bplow,glucose,painlevel,description,entrydate,pulserate) VALUES (" + lblpatid.Text + "," + txttemp.Text + "," + txtbphigh.Text + "," + txtbplow.Text + "," + txtglucose.Text + "," + "NULL" + "," + "NULL" +  ",CURRENT_DATE," + txtpulserate.Text + ")");
+						dbinsert = BaseDA.ExecuteNonQuery(sql);
+					}
+
+				//pain is blank, glucose and desc are not blank
+				if ((listpainlevel.SelectedValue.Trim().Contains("Select")) && (!string.IsNullOrEmpty(txtglucose.Text.Trim())) && (!string.IsNullOrEmpty(txtdescription.Text.Trim())))
+					{
+						sql = string.Format("INSERT into public.patient (pid,temperature,bphigh,bplow,glucose,painlevel,description,entrydate,pulserate) VALUES (" + lblpatid.Text + "," + txttemp.Text + "," + txtbphigh.Text + "," + txtbplow.Text + "," + txtglucose.Text + "," + "NULL" + ",'" + txtdescription.Text +  "',CURRENT_DATE," + txtpulserate.Text + ")");
+						dbinsert = BaseDA.ExecuteNonQuery(sql);
+					}
+
+				//desc is blank, glucose and pain is not blank	
+				if ((string.IsNullOrEmpty(txtdescription.Text.Trim())) && (!string.IsNullOrEmpty(txtglucose.Text.Trim())) && (listpainlevel.SelectedValue != "Select"))
+					{
+						sql = string.Format("INSERT into public.patient (pid,temperature,bphigh,bplow,glucose,painlevel,description,entrydate,pulserate) VALUES (" + lblpatid.Text + "," + txttemp.Text + "," + txtbphigh.Text + "," + txtbplow.Text + "," + txtglucose.Text + "," + listpainlevel.Text + "," + "NULL" +  ",CURRENT_DATE," + txtpulserate.Text + ")");
+						dbinsert = BaseDA.ExecuteNonQuery(sql);
+					}
+				
+				//all blank	
+				if ((string.IsNullOrEmpty(txtdescription.Text.Trim())) && (string.IsNullOrEmpty(txtglucose.Text.Trim())) && (listpainlevel.SelectedValue.Trim().Contains("Select")))
+					{
+						sql = string.Format("INSERT into public.patient (pid,temperature,bphigh,bplow,glucose,painlevel,description,entrydate,pulserate) VALUES (" + lblpatid.Text + "," + txttemp.Text + "," + txtbphigh.Text + "," + txtbplow.Text + "," + "NULL" + "," + "NULL"  + "," + "NULL" +  ",CURRENT_DATE," + txtpulserate.Text + ")");
+						dbinsert = BaseDA.ExecuteNonQuery(sql);
+					}
+				
+					//all filled
+				if (!string.IsNullOrEmpty(txtdescription.Text.Trim()) && (!string.IsNullOrEmpty(txtglucose.Text.Trim())) && (listpainlevel.SelectedValue != "Select"))
+					{
+						sql = string.Format("INSERT into public.patient (pid,temperature,bphigh,bplow,glucose,painlevel,description,entrydate,pulserate) VALUES (" + lblpatid.Text + "," + txttemp.Text + "," + txtbphigh.Text + "," + txtbplow.Text + "," + txtglucose.Text + "," + listpainlevel.Text + ",'" + txtdescription.Text +  "',CURRENT_DATE," + txtpulserate.Text + ")");
+						dbinsert = BaseDA.ExecuteNonQuery(sql);
+				}
+			}					 
+
+	      }
+		
 	
 	       catch(Exception ex)
 	
@@ -276,28 +361,14 @@ namespace HealthMonitorSystem
                	this.ErrorMessage = "Exception " + ex;
 	
 	       }
-	                       
+
+		
       }
 
 
 			
 		protected void Pname_SelectedIndexChanged(object sender, EventArgs e)
 		{
-			String sql1 = "SELECT id FROM public.Login where isadmin = false and isdoctor = false and firstname||' '||lastname = '" + listpid.SelectedItem.Value + "'";
-				DataSet ds = BaseDA.ExecuteDataSet(sql1);			
-				
-				if(ds != null )
-				{
-					if(ds.Tables.Count > 0)
-					{
-						DataTable dt = ds.Tables[0];
-						foreach (DataRow dr in dt.Rows)
-						{
-						 lblpatid.Text = dr["id"].ToString();
-						}	
-					}
-				}
-
 		}
 
 
@@ -315,59 +386,60 @@ namespace HealthMonitorSystem
 
        		
 		protected void btnHelp_Click(object sender, EventArgs e)
-
        {
-
-
+			
        }
 
-		       protected void btnCancel_Click(object sender, EventArgs e)
-
+	      protected void btnCancel_Click(object sender, EventArgs e)
        {
 			
 			Response.Redirect("PatientEntry.aspx");
-			
 
        }
 
+		protected void btnHist_Click(object sender, EventArgs e)
+       {
+			
+			Response.Redirect("PatientHist.aspx?pid= " + this.UserId);
+		
+       }
 
- bool CheckIfNumbericTemp( string myNumber )
-{
-bool IsNum = true;
-for( int index = 0; index < myNumber.Length; index++ )
-   {
-				
-	if (myNumber[ index ].ToString().Contains("."))
+		
+	 bool CheckIfNumbericTemp( string myNumber )
 	{
+		bool IsNum = true;
+		for( int index = 0; index < myNumber.Length; index++ )
+	   	{
+					
+			if (myNumber[ index ].ToString().Contains("."))
+			{
+			}
+			else
+			{
+			    if( !Char.IsNumber( myNumber[ index ] ))
+			    {
+				    IsNum = false;
+				    break;
+			    }
+			}	
+		}
+	return IsNum;
 	}
-	else
+	
+	 bool CheckIfNumberic( string myNumber )
 	{
-	    if( !Char.IsNumber( myNumber[ index ] ))
-	    {
-	    IsNum = false;
-	    break;
-	    }
-	}	
-   }
-return IsNum;
-}
-
- bool CheckIfNumberic( string myNumber )
-{
-bool IsNum = true;
-for( int index = 0; index < myNumber.Length; index++ )
-   {
-				
-	    if( !Char.IsNumber( myNumber[ index ] ))
-	    {
-	    IsNum = false;
-	    break;
-	    }
-   }
-return IsNum;
-}
-
-
+		bool IsNum = true;
+		for( int index = 0; index < myNumber.Length; index++ )
+	   	{
+					
+		   if( !Char.IsNumber( myNumber[ index ] ))
+		   {
+			    IsNum = false;
+			    break;
+		    }
+	   }
+	return IsNum;
+	}
 
 }
 

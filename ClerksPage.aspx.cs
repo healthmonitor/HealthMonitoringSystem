@@ -64,10 +64,6 @@ namespace HealthMonitorSystem
        protected void btnpatient_Click(object sender, EventArgs e)
 
        {
-			IDataReader reader;
-			IDbConnection dbconn;
-			IDbCommand dbcmd;
-
 	    try
 	
 	       {
@@ -82,25 +78,6 @@ namespace HealthMonitorSystem
 
 
        		
-		protected void btnPatientEntry_Click(object sender, EventArgs e)
-       {
-			Response.Redirect("PatientEntry.aspx");
-       }
-
-		protected void btnPatientHistory_Click(object sender, EventArgs e)
-
-       {
-			Response.Redirect("PatientHist.aspx");
-
-       }
-
-
-		protected void btnDocPatEntry_Click(object sender, EventArgs e)
-
-       {
-			Response.Redirect("DoctorPatient.aspx");
-
-       }
 
 		protected void lnkBack_Click (object sender, System.EventArgs e)
 		{
