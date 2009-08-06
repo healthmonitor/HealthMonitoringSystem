@@ -17,9 +17,8 @@
   <http://www.gnu.org/licenses/>.
  
 --%>
-<%@ Page Language="C#" MasterPageFile="~/HealthMaster.master" %>
-
-<asp:Content id="login" ContentPlaceHolderID="cphMain" runat="server">
+<html>
+<body>
  <br /><b><p align="left">How to enter Temperature </p></b>
 <font size="2">
 <p align="left">Temperature should be a positive number between 80 and 120. Decimal numbers are allowed.Please enter your temperature in degrees Fahrenheit. </p>
@@ -90,5 +89,5 @@
 </font>
 <br/>	
 
-</asp:Content>  
+</body></html>
 

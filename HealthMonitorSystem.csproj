@@ -66,6 +66,9 @@
     <Content Include="TopControl.ascx" />
     <Content Include="ChangePassword.aspx" />
     <Content Include="PasswordChanged.aspx" />
+    <Content Include="ClerksPage.aspx" />
+    <Content Include="DoctorPatient.aspx" />
+    <Content Include="PatientEntryhelp.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Default.aspx.cs">
@@ -143,6 +146,18 @@
     </Compile>
     <Compile Include="PasswordChanged.aspx.cs">
       <DependentUpon>PasswordChanged.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ClerksPage.aspx.designer.cs">
+      <DependentUpon>ClerksPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ClerksPage.aspx.cs">
+      <DependentUpon>ClerksPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DoctorPatient.aspx.designer.cs">
+      <DependentUpon>DoctorPatient.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DoctorPatient.aspx.cs">
+      <DependentUpon>DoctorPatient.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
