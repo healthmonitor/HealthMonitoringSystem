@@ -17,9 +17,11 @@ namespace HealthMonitorSystem {
 		
 		protected System.Web.UI.WebControls.TextBox txtglucose;
 		
+		protected System.Web.UI.WebControls.TextBox txtpulserate;
+		
 		protected System.Web.UI.WebControls.Content login;
 		
-		protected System.Web.UI.WebControls.TextBox txtpulserate;
+		protected System.Web.UI.WebControls.LinkButton lnkHist;
 		
 		protected System.Web.UI.WebControls.TextBox txtbphigh;
 		
@@ -42,8 +44,6 @@ namespace HealthMonitorSystem {
 		protected System.Web.UI.WebControls.LinkButton lnkBack;
 		
 		protected System.Web.UI.WebControls.TextBox txttemp;
-		
-		protected System.Web.UI.WebControls.Button btnHist;
 		
 		protected System.Web.UI.WebControls.TextBox txtbplow;
 	}

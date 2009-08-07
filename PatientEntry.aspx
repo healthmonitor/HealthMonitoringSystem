@@ -4,14 +4,18 @@
 <asp:Content id="login" ContentPlaceHolderID="cphMain" runat="server">
 <br/>
 	<asp:LinkButton id="lnkBack"  OnClick="lnkBack_Click" Visible="true" runat="server" >Back</asp:LinkButton>
+
+	<asp:LinkButton id="lnkHist"  Style = "Z-INDEX: 101; RIGHT: 290px; POSITION: absolute;" OnClick="lnkHist_Click" Visible="true" runat="server" >View History</asp:LinkButton>
+
 <head>
     <title>Patient Entry</title>
 </head>
     
     <br /><b><p align="center">Health Status Update Form</p></b>
+
 <font size="2">
 <p align="left">Enter your medical information on this form</p>
-<p align="left">* - Indicitaes Required Fields on this form</p>
+<p align="left"><font color="red">*</font> - Indicitaes Required Fields on this form</p>
 <p align="left">Click on Submit to record the information</p>
 <p align="left">Click on Cancel to clear all fields</p>
 </font>
@@ -20,9 +24,13 @@
 
    <div>
    <br /><br />
-   <table border="0" width="60%">   
+   <table border="0" width="65%">   
 <tr>
                <td> 
+               <font color="red">
+               <asp:Label id="lblstar" runat="server" > </asp:Label>
+               </font>
+               
                <asp:Label id="lblpatient" runat="server" > </asp:Label>
                </td>
                <td>
@@ -30,18 +38,19 @@
                     <asp:ListItem>Select</asp:ListItem>
                     </asp:DropDownList> 
                     <td>
-                    <asp:Label id="lblstar" runat="server" > </asp:Label>
+                    <!--asp:Label id="lblstar" runat="server" > </asp:Label-->
                     </td>
                     <asp:Label id="lblpatid" runat="server" Visible = "false" > </asp:Label>
 	           </td>
            </tr>
 
           <tr>
-               <td>Temperature </td>
+          		
+               <td><font color="red">*</font>Temperature </td>
                
                <td>
     	             <asp:TextBox ID="txttemp" runat="server" ValidationGroup="Patient"></asp:TextBox>
-    	             <td>*</td>
+    	             
     	             <td>Fahrenheit</td>
     	             <td></td>
                </td>
@@ -49,22 +58,22 @@
            
              <tr>
 
-               <td>Bloop Pressure-high </td>
+               <td><font color="red">*</font>Bloop Pressure-high </td>
 				
                <td>
                      <asp:TextBox ID="txtbphigh" runat="server" ValidationGroup="Patient"></asp:TextBox>
-                     <td>*</td>
+                     
                      <td>mmHg</td>
                </td>
            </tr>
 
 			<tr>
 
-               <td>Bloop Pressure-low </td>
+               <td><font color="red">*</font>Bloop Pressure-low </td>
 				
                <td>
                      <asp:TextBox ID="txtbplow" runat="server" ValidationGroup="Patient"></asp:TextBox>
-                     <td>*</td>
+                     
                      <td>mmHg</td>
                </td>
            </tr>
@@ -72,28 +81,28 @@
 
 			<tr>
 
-               <td>Pulse Rate </td>
+               <td><font color="red">*</font>Pulse Rate </td>
 				
                <td>
                      <asp:TextBox ID="txtpulserate" runat="server" ValidationGroup="Patient"></asp:TextBox>
-                     <td>*</td>
+                     
                      <td>per minute</td>
                </td>
            </tr>
 
 			<tr>
-
+				
                <td>Glucose </td>
 				
                <td>
                      <asp:TextBox ID="txtglucose" runat="server" ValidationGroup="Patient"></asp:TextBox>
-                     <td></td>
+                     
                      <td>mg / dl</td>
                </td>
            </tr>
 
 			<tr>
-
+				
                <td>Pain Level </td>
 			
                <td>
@@ -110,15 +119,16 @@
 						<asp:ListItem>9</asp:ListItem>
 						<asp:ListItem>10</asp:ListItem>
                      </asp:DropDownList> 
-                      <td></td>
+                     
                      <td>1-Less Pain,10-Severe Pain</td>
                </td>
            </tr>
 
 			<tr>
+				
                <td>Description </td>
                <td>
-                     <asp:TextBox ID="txtdescription" runat="server" ValidationGroup="Patient"></asp:TextBox>
+                     <asp:TextBox ID="txtdescription" runat="server" textmode="multiline" ValidationGroup="Patient"></asp:TextBox>
                </td>
            </tr>
 			<!--tr>
@@ -139,9 +149,7 @@
            &nbsp; &nbsp;
            <asp:Button ID="btnHelp" Text="Help" runat="server" OnClick="btnHelp_Click"  ValidationGroup="Patient"/>
            &nbsp; &nbsp;
-		   <asp:Button ID="btnHist" Text="Records" runat="server" OnClick="btnHist_Click"  ValidationGroup="Patient"/>
-		   &nbsp; &nbsp;
-		 
+	 
       </td>
    </tr>
    </table>   

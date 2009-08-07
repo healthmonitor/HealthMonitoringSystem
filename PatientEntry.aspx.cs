@@ -73,7 +73,7 @@ namespace HealthMonitorSystem
 					lblstar.Text = "*";
 					lblpatient.Visible = true;
 					lblstar.Visible = true;
-					btnHist.Visible = false;
+					lnkHist.Visible = false;
 					listpid.Visible = true;
 				
 					if(this.UserId > 0)
@@ -89,7 +89,7 @@ namespace HealthMonitorSystem
 								listpid.DataTextField = "fullname";
 								listpid.DataValueField = "fullname";
 								listpid.DataBind();
-								//DataTable dt = ds.Tables[0];
+			
 							}
 							else
 							{	
@@ -131,7 +131,7 @@ namespace HealthMonitorSystem
 				listpid.Visible = false;
 				lblpatient.Visible = false;
 				lblstar.Visible = false;
-				btnHist.Visible = true;
+				lnkHist.Visible = true;
 			}
 	}
 
@@ -246,6 +246,11 @@ namespace HealthMonitorSystem
 							}
 						}
 					}
+					if ( (Convert.ToInt32(txtbplow.Text)) > (Convert.ToInt32(txtbphigh.Text)) )
+						  	{
+								this.ErrorMessage += "Blood Pressure - LOW value must be Less Than Blood Pressure - HIGH. <br/>";
+							}
+					
 				}
 				if (string.IsNullOrEmpty(txtpulserate.Text.Trim()))
 				{
@@ -384,20 +389,23 @@ namespace HealthMonitorSystem
 			}
 		}
 
-       		
+		
+	
 		protected void btnHelp_Click(object sender, EventArgs e)
        {
 			
        }
 
-	      protected void btnCancel_Click(object sender, EventArgs e)
+
+
+		protected void btnCancel_Click(object sender, EventArgs e)
        {
 			
 			Response.Redirect("PatientEntry.aspx");
 
        }
 
-		protected void btnHist_Click(object sender, EventArgs e)
+		protected void lnkHist_Click(object sender, EventArgs e)
        {
 			
 			Response.Redirect("PatientHist.aspx?pid= " + this.UserId);
