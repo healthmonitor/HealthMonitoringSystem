@@ -22,7 +22,7 @@
 	<asp:Content id="hist" ContentPlaceHolderID="cphMain" runat="server">
 	<br/>
 	<asp:LinkButton id="lnkBack"  OnClick="lnkBack_Click" Visible="true" runat="server" >Back</asp:LinkButton>
-	
+	<br /><b><p align="center">Associate Doctors to Patients</p></b>
 	<br /><br />
 	<asp:GridView AutoGenerateColumns="false" Width="60%" runat="server" id="gvHist"
 	 OnRowDataBound="gvHist_RowDataBound">
