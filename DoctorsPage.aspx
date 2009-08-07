@@ -1,5 +1,5 @@
 <%-- 
-  Copyright (c) 2009 Navya Jammula.
+  Copyright (c) 2009 Navya Jammula,Anuja Kharade
 
   This file is part of HealthMonitoringSystem.
   HealthMonitoringSystem is free software: you can redistribute it and/or modify
@@ -21,6 +21,7 @@
 <%@ Page Language="C#" Inherits="HealthMonitorSystem.DoctorsPage" MasterPageFile="~/HealthMaster.master" %>
 
 <asp:Content id="doctors" ContentPlaceHolderID="cphMain" runat="server">
+<br /><b><p align="center">Patients Records </p></b>
     <div>
     <asp:GridView AutoGenerateColumns="false" Width="90%" HorizontalAlign="Center" 
     runat="server"
