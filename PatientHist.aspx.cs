@@ -1,5 +1,5 @@
 //-----------------------------------------------------------------------
-// Copyright (c) 2009 Navya Jammula.
+// Copyright (c) 2009 Anuja Kharade,Navya Jammula.
 
 // This file is part of HealthMonitoringSystem.
 // HealthMonitoringSystem is free software: you can redistribute it and/or modify
@@ -42,7 +42,22 @@ namespace HealthMonitorSystem
 				else
 				{
 					pid = this.UserId;
-				}		
+				}	
+				
+						String sql = "SELECT id,firstname,lastname,firstname||' '||lastname as fullname FROM public.Login where id = " + pid;
+						DataSet dsname = BaseDA.ExecuteDataSet(sql);			
+						if(dsname != null )
+						{
+							if(dsname.Tables.Count > 0)
+							{
+								DataTable dt = dsname.Tables[0];
+								foreach (DataRow dr in dt.Rows)
+								{
+								 lblfullname.Text = dr["fullname"].ToString();
+								}	
+							}
+						}
+
 				string strSql = " SELECT *, bphigh || '/' || bplow as bp " + 
 								" FROM public.Patient where pid = "+pid +
 								" order by entrydate desc";

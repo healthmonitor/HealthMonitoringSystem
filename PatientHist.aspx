@@ -1,5 +1,5 @@
 <%-- 
-  Copyright (c) 2009 Navya Jammula.
+  Copyright (c) 2009 Anuja Kharade,Navya Jammula
 
   This file is part of HealthMonitoringSystem.
   HealthMonitoringSystem is free software: you can redistribute it and/or modify
@@ -22,7 +22,7 @@
 	<asp:Content id="hist" ContentPlaceHolderID="cphMain" runat="server">
 	<br/>
 	<asp:LinkButton id="lnkBack"  OnClick="lnkBack_Click" Visible="true" runat="server" >Back</asp:LinkButton>
-	
+	<br /><b><p align="center"> <asp:Label id="lblfullname" runat="server" > </asp:Label>'s Medical History</p></b>
 	<br /><br />
 	<asp:GridView AutoGenerateColumns="false" runat="server" id="gvHist">
 	<Columns>
