@@ -19,9 +19,10 @@
 --%>
 <%@ Control Language="C#" AutoEventWireup="true" CodeFile="TopControl.ascx.cs" Inherits="HealthMonitorSystem.TopControl" %>
 
-<table width="100%">
+<table width="100%" bgcolor="lightblue" > 
 <tr>
 <td align="right">
+<b><p align="center" > <font color="white" size="6px">Health Monitor System</font></p></b>
 	<asp:Label id="lblName" runat="server"> </asp:Label> <br />
 </td>
 </tr>
