@@ -46,6 +46,7 @@ namespace HealthMonitorSystem
         {
 
             ErrorMessage = string.Empty;
+			lblErrors.Text = string.Empty;
             try
             {
                 //check for required field validation 	
@@ -126,17 +127,27 @@ namespace HealthMonitorSystem
                 //Build birth date from the values entered and validate it
                 if (!string.IsNullOrEmpty(listMonth.SelectedValue.Trim()) && !string.IsNullOrEmpty(txtDay.Text.Trim()) && !string.IsNullOrEmpty(txtYear.Text.Trim()))
                 {
-                    int month = Int16.Parse(listMonth.SelectedValue);
-                    int day = Int16.Parse(txtDay.Text.Trim());
-                    int year = Int16.Parse(txtYear.Text.Trim());
-                    
+                    double Num;
+					bool isValidDay,isValidYear;
+
+					isValidDay = double.TryParse(txtDay.Text, out Num);
+
+					if(!isValidDay)
+					{
+						ErrorMessage = "Enter a valid date<br/>";
+					}
+					
+					isValidYear = double.TryParse(txtYear.Text, out Num);
+
+					if(!isValidYear)
+					{
+						ErrorMessage = "Enter a valid date<br/>";
+					}
+	                    
                     if (!IsValidDate(listMonth.SelectedValue, txtDay.Text.Trim(), txtYear.Text.Trim()))
                     {
                         ErrorMessage = "Enter a valid date<br/>";
                     }
-
-                    birthDate = new DateTime(year, month, day);
-                    
                    
                 }
 				
@@ -150,19 +161,26 @@ namespace HealthMonitorSystem
 
                 if (string.IsNullOrEmpty(ErrorMessage))
                 {
+					int month = Int16.Parse(listMonth.SelectedValue);
+                    int day = Int16.Parse(txtDay.Text.Trim());
+                    int year = Int16.Parse(txtYear.Text.Trim());
+					
+					birthDate = new DateTime(year, month, day);
+					
                     //No validation errors, insert the entry
                     
                     string sql = string.Format("INSERT INTO LOGIN (username ,password,firstname,lastname,gender,dob,address,securityQuestion,answer,isnewuser) VALUES ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}')",
                       BaseDA.Escape(txtUserId.Text), BaseDA.Escape(txtPassword.Text), BaseDA.Escape(txtFirstName.Text), BaseDA.Escape(txtLastName.Text), BaseDA.Escape(listGender.SelectedValue), birthDate, BaseDA.Escape(txtAddress.Text), BaseDA.Escape(listSecQuestion.SelectedValue), BaseDA.Escape(txtAnswer.Text),"TRUE");
 
                     BaseDA.ExecuteNonQuery(sql);
+					Response.Redirect("Default.aspx",true);
                 }
 
             }
 
             catch (Exception ex)
             {
-               // ErrorMessage = "Exception " + ex;
+                ErrorMessage = "Exception " + ex;
                 lblErrors.Text = ErrorMessage;
                 
             }
@@ -187,5 +205,10 @@ namespace HealthMonitorSystem
             }
             return true;
         }
+		
+		protected void lnkBack_Click (object sender, System.EventArgs e)
+		{
+			Response.Redirect("Default.aspx");
+		}
     }
 }

@@ -35,6 +35,8 @@ namespace HealthMonitorSystem {
 		
 		protected System.Web.UI.WebControls.DropDownList listSecQuestion;
 		
+		protected System.Web.UI.WebControls.LinkButton lnkBack;
+		
 		protected System.Web.UI.WebControls.TextBox txtRetypePwd;
 		
 		protected System.Web.UI.WebControls.TextBox txtFirstName;

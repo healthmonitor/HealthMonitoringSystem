@@ -25,12 +25,13 @@ CodeBehind="Default.aspx.cs" Inherits="HealthMonitorSystem._Default"
    <br /><br />
    <table border="0" width="40%">   
    <tr>
-       <td>Login </td>
+   		
+       <td><font color="red">*</font>Login </td>
        <td><asp:TextBox ID="txtuser" runat="server" ></asp:TextBox></td>
    </tr>
    
    <tr>
-	   <td>Password </td>
+	   <td><font color="red">*</font>Password </td>
 	   <td><asp:TextBox ID="txtpassword" runat="server" TextMode= "Password" ></asp:TextBox></td>
    </tr>
    
@@ -54,6 +55,9 @@ CodeBehind="Default.aspx.cs" Inherits="HealthMonitorSystem._Default"
 
       </td>
    </tr>
-   </table>   
+   </table> 
+   <br/>
+   <br/>
+   <font color="red"><b>* indicates required field</b> </font>  
    </div>
 </asp:Content>  

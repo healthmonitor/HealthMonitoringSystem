@@ -21,6 +21,12 @@
 
 <asp:Content id="login" ContentPlaceHolderID="cphMain" runat="server">
 
+
+	<asp:LinkButton id="lnkBack"  OnClick="lnkBack_Click" Visible="true" runat="server" >Back</asp:LinkButton>
+	<br/>
+	<br/>
+	<br/>
+
     <fieldset style="width: 1040px; height: 200">
         <legend>Registration Form</legend>
         <table border="0" width="100%" >

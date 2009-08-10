@@ -13,24 +13,26 @@ namespace HealthMonitorSystem {
 	
 	public partial class ForgotPwd {
 		
-		protected System.Web.UI.WebControls.Button btnSubmit;
+		protected System.Web.UI.WebControls.TextBox txtAnswer;
+		
+		protected System.Web.UI.WebControls.Content login;
+		
+		protected System.Web.UI.WebControls.DropDownList listMonth;
 		
 		protected System.Web.UI.WebControls.TextBox txtDay;
 		
 		protected System.Web.UI.WebControls.Label lblErrors;
 		
-		protected System.Web.UI.WebControls.DropDownList listSecQuestion;
-		
 		protected System.Web.UI.WebControls.TextBox txtYear;
 		
-		protected System.Web.UI.WebControls.TextBox txtAnswer;
+		protected System.Web.UI.WebControls.Button btnSubmit;
 		
-		protected System.Web.UI.WebControls.TextBox txtUserId;
+		protected System.Web.UI.WebControls.DropDownList listSecQuestion;
 		
-		protected System.Web.UI.WebControls.DropDownList listMonth;
+		protected System.Web.UI.WebControls.LinkButton lnkBack;
 		
 		protected System.Web.UI.WebControls.Button btnReset;
 		
-		protected System.Web.UI.WebControls.Content login;
+		protected System.Web.UI.WebControls.TextBox txtUserId;
 	}
 }
