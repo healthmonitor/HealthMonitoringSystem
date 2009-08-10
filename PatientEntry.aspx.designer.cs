@@ -33,6 +33,8 @@ namespace HealthMonitorSystem {
 		
 		protected System.Web.UI.WebControls.Label lblpatid;
 		
+		protected System.Web.UI.WebControls.Label lblErrors;
+		
 		protected System.Web.UI.WebControls.TextBox txtdescription;
 		
 		protected System.Web.UI.WebControls.Label lblpatient;
@@ -44,6 +46,8 @@ namespace HealthMonitorSystem {
 		protected System.Web.UI.WebControls.LinkButton lnkBack;
 		
 		protected System.Web.UI.WebControls.TextBox txttemp;
+		
+		protected System.Web.UI.WebControls.LinkButton lnkTip;
 		
 		protected System.Web.UI.WebControls.TextBox txtbplow;
 	}

@@ -43,6 +43,9 @@ using System.Text;
 
 using Npgsql;
 
+
+
+
 namespace HealthMonitorSystem
 {
 
@@ -61,8 +64,13 @@ namespace HealthMonitorSystem
 		protected override void OnPreRender (System.EventArgs e)
 		{
 			base.OnPreRender (e);
+		
 			
 			btnHelp.Attributes.Add("onclick", "window.open('PatientEntryhelp.aspx',null,'left=400, top=100, height=250, width= 400, status=no, resizable= no, scrollbars= yes, toolbar= no,location= no, menubar= no');"); 
+			lnkTip.Attributes.Add("onclick", "window.open('HealthTips.aspx',null,'left=400, top=100, height=250, width= 400, status=no, resizable= no, scrollbars= yes, toolbar= no,location= no, menubar= no');"); 
+			
+			
+			//ErrorMessage = string.Empty;
 			
 			//Clerks logs in
 			
@@ -74,6 +82,7 @@ namespace HealthMonitorSystem
 					lblpatient.Visible = true;
 					lblstar.Visible = true;
 					lnkHist.Visible = false;
+					lnkTip.Visible = false;
 					listpid.Visible = true;
 				
 					if(this.UserId > 0)
@@ -132,6 +141,7 @@ namespace HealthMonitorSystem
 				lblpatient.Visible = false;
 				lblstar.Visible = false;
 				lnkHist.Visible = true;
+				lnkTip.Visible = true;
 			}
 	}
 
@@ -142,8 +152,18 @@ namespace HealthMonitorSystem
 	    try
 	
 	       {
-				this.ErrorMessage = "";
-
+				
+			 		/*StringBuilder sb = new StringBuilder();
+					sb.Append("<script language=\"javascript\">" + "\n");
+					sb.Append("function confirmthis() { if(confirm(”Do you want to do save this record?”)) { return true; } else { return false; } }");
+					sb.Append("</script>");
+					Page.ClientScript.RegisterStartupScript(
+                            this.Page.GetType(),
+                            "OpenPopup",
+                            sb.ToString());*/
+      		
+				ErrorMessage = string.Empty;
+	
 				//clerk
 				if (IsAdmin	== true)			
 				{
@@ -167,9 +187,11 @@ namespace HealthMonitorSystem
 				
 				//patient
 				//store the patient id to be inserted later for new records
+				
 				if (IsAdmin	== false)			
 				{
 						lblpatid.Text = this.UserId.ToString();
+					
 				}
 				
 				//Field Validations
@@ -181,7 +203,9 @@ namespace HealthMonitorSystem
 				
 				if((string.IsNullOrEmpty(txttemp.Text.Trim())))
 				{
-					this.ErrorMessage += "Temperature Is Required. <br />";					
+					ErrorMessage += "Temperature Is Required. <br />";		
+					
+					
 				}
 				else
 				{
@@ -293,6 +317,12 @@ namespace HealthMonitorSystem
 				String sql;
 				int dbinsert=0;
 				
+				 bool isConfirmNeeded = false;
+				 string confirmMessage = string.Empty;
+				
+				 // All server side execution goes here and, if user confirmation is needed,
+				 // set isConfirmNeeded to true and create the confirmMessage text.
+				
 				
 			//Insert Records	
    			if (string.IsNullOrEmpty(ErrorMessage)) 
@@ -353,7 +383,42 @@ namespace HealthMonitorSystem
 					{
 						sql = string.Format("INSERT into public.patient (pid,temperature,bphigh,bplow,glucose,painlevel,description,entrydate,pulserate) VALUES (" + lblpatid.Text + "," + txttemp.Text + "," + txtbphigh.Text + "," + txtbplow.Text + "," + txtglucose.Text + "," + listpainlevel.Text + ",'" + txtdescription.Text +  "',CURRENT_DATE," + txtpulserate.Text + ")");
 						dbinsert = BaseDA.ExecuteNonQuery(sql);
-				}
+						
+					}
+					
+					
+					
+				if (dbinsert != -1)
+					//	Record Inserted Successfuly
+					{
+					    StringBuilder sb = new StringBuilder();
+						sb.Append("<script language=\"javascript\">" + "\n");
+						sb.Append("alert(\"Record Inserted Successfuly\")");
+						  sb.Append("</script>");
+						  Page.ClientScript.RegisterStartupScript(
+                            this.Page.GetType(),
+                            "OpenPopup",
+                            sb.ToString());
+
+					}
+						
+				else
+					    //Failed to Insert the Record"
+						
+					{
+						 StringBuilder sb = new StringBuilder();
+						sb.Append("<script language=\"javascript\">" + "\n");
+						sb.Append("alert(\"Failed to Insert the Record\")");
+						  sb.Append("</script>");
+						  Page.ClientScript.RegisterStartupScript(
+                            this.Page.GetType(),
+                            "OpenPopup",
+                            sb.ToString());
+
+					}
+					
+					
+			
 			}					 
 
 	      }
@@ -362,12 +427,10 @@ namespace HealthMonitorSystem
 	       catch(Exception ex)
 	
 	       {
-	
-               	this.ErrorMessage = "Exception " + ex;
+				lblErrors.Text = ErrorMessage;
 	
 	       }
 
-		
       }
 
 
@@ -412,6 +475,12 @@ namespace HealthMonitorSystem
 		
        }
 
+		protected void lnkTip_Click(object sender, EventArgs e)
+       {
+			
+			
+		
+       }
 		
 	 bool CheckIfNumbericTemp( string myNumber )
 	{
@@ -449,6 +518,9 @@ namespace HealthMonitorSystem
 	return IsNum;
 	}
 
+
+
+		
 }
 
 	

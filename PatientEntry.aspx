@@ -1,16 +1,20 @@
 <%@ Page Language="C#" MasterPageFile="~/HealthMaster.master" CodeBehind="PatientEntry.aspx.cs" Inherits="HealthMonitorSystem.PatientEntry"%>
 
 
-<asp:Content id="login" ContentPlaceHolderID="cphMain" runat="server">
+<asp:Content id="login" ContentPlaceHolderID="cphMain" runat="server" >
+
+
 <br/>
 	<asp:LinkButton id="lnkBack"  OnClick="lnkBack_Click" Visible="true" runat="server" >Back</asp:LinkButton>
 
-	<asp:LinkButton id="lnkHist"  Style = "Z-INDEX: 101; RIGHT: 290px; POSITION: absolute;" OnClick="lnkHist_Click" Visible="true" runat="server" >View History</asp:LinkButton>
+	<asp:LinkButton id="lnkHist"  Style = "Z-INDEX: 115; RIGHT: 400px; POSITION: absolute;" OnClick="lnkHist_Click" Visible="true" runat="server" >View History</asp:LinkButton>
+	<asp:LinkButton id="lnkTip"  Style = "Z-INDEX: 101; RIGHT: 200px; POSITION: absolute;" OnClick="lnkTip_Click" Visible="true" runat="server" >Health Tips</asp:LinkButton>
 
 <head>
     <title>Patient Entry</title>
-</head>
     
+</head>
+
     <br /><b><p align="center">Health Status Update Form</p></b>
 
 <font size="2">
@@ -143,15 +147,18 @@
    
    <tr>
        <td colspan="2" align="center"> &nbsp;
-           <asp:Button ID="btnpatient" Text="Submit" runat="server" OnClick="btnpatient_Click"  ValidationGroup="Patient"/>
+           <asp:Button ID="btnpatient" runat="server" OnClick="btnpatient_Click" onclientclick="return confirm('Do you want to save?')" Text="Submit" ValidationGroup="Patient"/>
+           <!--asp:Button ID="btnpatient" runat="server"  onclientclick="btnpatient_Click" Text="Submit" ValidationGroup="Patient"/-->
            &nbsp; &nbsp;
            <asp:Button ID="btnCancel" Text="Cancel" runat="server" OnClick="btnCancel_Click"  ValidationGroup="Patient"/>
            &nbsp; &nbsp;
            <asp:Button ID="btnHelp" Text="Help" runat="server" OnClick="btnHelp_Click"  ValidationGroup="Patient"/>
            &nbsp; &nbsp;
-	 
       </td>
    </tr>
+   
+	<asp:Label  ID="lblErrors" ForeColor="Red" runat="server" ></asp:Label>
    </table>   
    </div>
+
 </asp:Content>  
