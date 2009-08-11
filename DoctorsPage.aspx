@@ -21,7 +21,12 @@
 <%@ Page Language="C#" Inherits="HealthMonitorSystem.DoctorsPage" MasterPageFile="~/HealthMaster.master" %>
 
 <asp:Content id="doctors" ContentPlaceHolderID="cphMain" runat="server">
-<br /><b><p align="center">Patients Records </p></b>
+<br />
+<head>
+    <title>Doctor Page</title>
+</head>
+
+<b><p align="center">Patients Records </p></b>
     <div>
     <asp:GridView AutoGenerateColumns="false" Width="90%" HorizontalAlign="Center" 
     runat="server"

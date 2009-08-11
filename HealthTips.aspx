@@ -18,6 +18,10 @@
  
 --%>
 <html>
+<head>
+    <title>Health Tips</title>
+</head>
+
 <body>
  <h1>High blood
             pressure (hypertension)</h1>

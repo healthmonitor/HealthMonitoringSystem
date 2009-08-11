@@ -21,6 +21,10 @@
 
 	<asp:Content id="hist" ContentPlaceHolderID="cphMain" runat="server">
 	<br/>
+	<head>
+    <title>Patient History</title>
+	</head>
+
 	<asp:LinkButton id="lnkBack"  OnClick="lnkBack_Click" Visible="true" runat="server" >Back</asp:LinkButton>
 	<br /><b><p align="center"> <asp:Label id="lblfullname" runat="server" > </asp:Label>'s Medical History</p></b>
 	<br /><br />

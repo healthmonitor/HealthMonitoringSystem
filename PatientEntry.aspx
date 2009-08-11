@@ -1,4 +1,4 @@
-<%@ Page Language="C#" MasterPageFile="~/HealthMaster.master" CodeBehind="PatientEntry.aspx.cs" Inherits="HealthMonitorSystem.PatientEntry"%>
+<%@ Page Language="C#" MasterPageFile="~/HealthMaster.master" CodeBehind="PatientEntry.aspx.cs" Inherits="HealthMonitorSystem.PatientEntry" %>
 
 
 <asp:Content id="login" ContentPlaceHolderID="cphMain" runat="server" >
@@ -12,7 +12,6 @@
 
 <head>
     <title>Patient Entry</title>
-    
 </head>
 
     <br /><b><p align="center">Health Status Update Form</p></b>
