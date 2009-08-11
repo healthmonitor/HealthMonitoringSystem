@@ -21,6 +21,10 @@
 
 <asp:Content id="login" ContentPlaceHolderID="cphMain" runat="server">
 
+<head> 
+	<title> Registration  </title>
+
+</head>
 
 	<asp:LinkButton id="lnkBack"  OnClick="lnkBack_Click" Visible="true" runat="server" >Back</asp:LinkButton>
 	<br/>

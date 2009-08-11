@@ -21,6 +21,11 @@
 <%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ChangePassword.aspx.cs" Inherits="HealthMonitorSystem.ChangePassword" MasterPageFile="~/HealthMaster.master"%>
 
 <asp:Content id="login" ContentPlaceHolderID="cphMain" runat="server">
+<head> 
+	<title> Change Password  </title>
+
+</head>
+
 <fieldset style="width: 494px; height: 205px" >
 <legend>Change Password</legend>
         

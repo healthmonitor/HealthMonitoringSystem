@@ -21,6 +21,11 @@
 CodeBehind="Default.aspx.cs" Inherits="HealthMonitorSystem._Default"
 %>
 <asp:Content id="login" ContentPlaceHolderID="cphMain" runat="server">
+<head> 
+	<title> Login  </title>
+
+</head>
+
    <div>
    <br /><br />
    <table border="0" width="40%">   

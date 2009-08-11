@@ -19,6 +19,11 @@
 
 <%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ForgotPwd.aspx.cs" Inherits="HealthMonitorSystem.ForgotPwd" MasterPageFile="~/HealthMaster.master"%>
 <asp:Content id="login" ContentPlaceHolderID="cphMain" runat="server">
+<head> 
+	<title> Forgot Password  </title>
+
+</head>
+
 <asp:LinkButton id="lnkBack"  OnClick="lnkBack_Click" Visible="true" runat="server" >Back</asp:LinkButton>
 	<br/>
 	<br/>
