@@ -156,28 +156,48 @@ namespace HealthMonitorSystem
 			return blnValid;
 		}
 
+
 		protected void btnAssociate_Click (object sender, System.EventArgs e)
 		{
 			try
 			{
 				if(this.ValidateData())
 				{
-					string strSql = " insert into doctorpatient(doctorid, patientid) " +
-									 " values ({0}, {1}); " +
-									 " update login set isnewuser=false where id={2} ";
-					foreach(GridViewRow row in gvHist.Rows)
-					{
-						CheckBox chk = (CheckBox)(row.FindControl("chkSelect"));
-						if(chk.Checked)
+
+						string strSql = " insert into doctorpatient(doctorid, patientid) " +
+										 " values ({0}, {1}); " +
+										 " update login set isnewuser=false where id={2} ";
+						foreach(GridViewRow row in gvHist.Rows)
 						{
-							int PatId = Convert.ToInt32(row.Cells[1].Text);
-							DropDownList ddlDoc = (DropDownList)(row.FindControl("ddlDoctor"));
-							int intDocId = Convert.ToInt32(ddlDoc.SelectedValue);
-							BaseDA.ExecuteNonQuery(string.Format(strSql, intDocId, PatId, PatId));							
+							
+							CheckBox chk = (CheckBox)(row.FindControl("chkSelect"));
+							if(chk.Checked)
+							{
+								int PatId = Convert.ToInt32(row.Cells[1].Text);
+								DropDownList ddlDoc = (DropDownList)(row.FindControl("ddlDoctor"));
+								int intDocId = Convert.ToInt32(ddlDoc.SelectedValue);
+								//check duplicate
+								string userIdSql = string.Format( "select * from doctorpatient where doctorid = " + intDocId + " and patientid = " + PatId);
+								DataSet ds = BaseDA.ExecuteDataSet(userIdSql);
+								
+								if(ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
+								{
+									DataRow dr = ds.Tables[0].Rows[0];						
+									if(dr != null)
+									{
+										if(dr["doctorid"] != null)
+										{
+											ErrorMessage += "Patient " +  row.Cells[2].Text + " already associated to the selected Doctor  <br/>";
+										}
+									}
+								}
+								else
+									BaseDA.ExecuteNonQuery(string.Format(strSql, intDocId, PatId, PatId));							
+
+							}
 						}
-					}
-					this.RefreshData();
-				}
+						this.RefreshData();
+						}	
 			}
 			catch(Exception ex)
 			{
