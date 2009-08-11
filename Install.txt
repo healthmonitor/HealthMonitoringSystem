@@ -1,0 +1,62 @@
+Operating System: 
+
+Linux distribution
+
+Prerequite software :
+
+Mono packages can be dowloaded from the URL  http://monodevelop.com/Download/
+The following mono packages are required.
+
+Monodevelop 2.0 (IDE tool) 
+mono-xsp2 - simple web server to run ASP.NET applications
+monodevelop-database - Database plugin for MonoDevelop
+monodevelop-debugger-gdb - GNU Debugger plugin for MonoDevelop
+monodevelop-debugger-mdb - Mono Debugger plugin for MonoDevelop
+
+PostGreSQL :
+PostGreSql database can be downloaded from the URL http://www.postgresql.org/download/
+
+Web browser : FireFox 2.x , Firefox 3.x
+
+Instruction to download and run the web application:
+
+1. The source code can be found at the following URL http://github.com/healthmonitor/HealthMonitoringSystem/tree/master.
+2. At the Linux terminal ,type the following command to download the files from the source code repository.
+	git clone git@github.com:healthmonitor/HealthMonitoringSystem.git
+
+The files will be downloaded to a new folder called "HealthMonitoringSystem".
+
+3. Open the MonoDevelop IDE and select "Open a project/solution" option from the toolbar. Navigate to the "HealthMonitoringSystem" folder and double click on the file HealthMonitoringSystem.sln.
+
+This will open the web application in MonoDevelop. Compile the application and click Run.
+
+Instructions to push the new changes to the GIT repository:
+
+1. From the terminal , go to the directory created in the step 2 above - "HealthMonitoringSystem".
+2. The command "git status" indicated the files that have been modified by you.
+3.Use the following commands to push the code to the repository.
+
+	git add <filename>
+        git commit -m "Comments"
+	git push
+
+Hosting the web application using Apache web server :
+
+Follow the instructions in the following link to host the application
+
+http://www.ivankristianto.com/2009/07/howto-run-asp-net-on-linux-with-apache-web-server-mono-mod_mono/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
